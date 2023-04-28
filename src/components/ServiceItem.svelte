@@ -22,7 +22,7 @@
         <p class="text-xl font-bold">
             {title}
         </p>
-        <p class="text-sm">
+        <p class="opacity-60">
             {description}
         </p>
     </div>
