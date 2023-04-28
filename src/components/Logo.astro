@@ -1,0 +1,14 @@
+---
+const {title} = Astro.props;
+---
+<div class="flex flex-row items-center justify-start">
+    <div class="w-10 h-10 rounded-r-full bg-gradient-to-r from-[#6288da] to-[#e39999] flex items-center justify-start z-10">
+        <div class="w-6 h-2 rounded-r-full bg-primary">
+        </div>
+    </div>
+    <div class="w-10 h-10 rounded-r-full bg-gradient-to-r from-primary to-secondary flex items-center justify-start -ml-2">
+        <div class="w-6 h-2 rounded-r-full bg-primary">
+        </div>
+    </div>
+    <p class="text-secondary text-xl font-bold ml-3">{title}</p>
+</div>

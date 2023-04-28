@@ -1,81 +1,133 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Box from '../components/Box.astro';
+import Logo from '../components/Logo.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+
+const quizButtons = ['What is it?', 'What is it?', 'What is it?', 'What is it?', 'What is it?', 'What is it?', 'What is it?', 'What is it?'];
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout
+        title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
+        description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
+        keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
+>
+    <main class="px-5 py-6 md:p-10 bg-primary">
+        <div class="flex md:flex-row flex-col md:gap-20">
+            <div class="md:hidden mb-7">
+                <Logo title="DisruptDesign"/>
+            </div>
+            <div class="md:w-1/3 md:order-1 order-2">
+                <div class="hidden-custom md:block">
+                    <Logo title="DisruptDesign"/>
+                </div>
+                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Remarkable logo, catchy visuals,
+                    and advertising for
+                    your
+                    product in days</p>
+                <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">Unlimited
+                    revisions, expertly
+                    handcrafted
+                    logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.</p>
+                <button class="border-2 border-secondary rounded-lg px-3 py-2.5 md:mt-10 mt-6 text-secondary font-semibold hover:bg-secondary hover:text-primary">
+                    Take a quiz
+                </button>
+            </div>
+            <div class="grid grid-cols-6 md:w-2/3 md:order-2 order-1">
+                <Box bgColor="bg-green"/>
+                <Box bgColor="bg-gray"/>
+                <Box bgColor="bg-green" colSpan="col-span-4"/>
+                <Box bgColor="bg-primary" colSpan="col-span-2"/>
+                <Box bgColor="bg-green" colSpan="col-span-4"/>
+                <Box bgColor="bg-yellow" colSpan="col-span-2"/>
+                <Box bgColor="bg-gray"/>
+                <Box bgColor="bg-primary"/>
+                <Box bgColor="bg-gray" colSpan="col-span-2"/>
+                <Box bgColor="bg-yellow" colSpan="col-span-2"/>
+                <Box bgColor="bg-primary"/>
+                <Box bgColor="bg-gray" colSpan="col-span-2"/>
+                <Box bgColor="bg-pink"/>
+                <Box bgColor="bg-primary" colSpan="col-span-2"/>
+                <Box bgColor="bg-orange" colSpan="col-span-2"/>
+                <Box bgColor="bg-gray" colSpan="col-span-2"/>
+                <Box bgColor="bg-gray"/>
+                <Box bgColor="bg-primary"/>
+                <Box bgColor="bg-orange" colSpan="col-span-2"/>
+                <Box bgColor="bg-primary"/>
+                <Box bgColor="bg-gray"/>
+            </div>
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-5 md:mt-10 mt-5">
+            <ServiceCard
+                    title="Logotype and visual identity"
+                    description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                    bgColor="bg-yellow"
+                    price="199"
+                    buttonText="Get Started"
+            />
+            <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first">
+            </div>
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-5 md:mt-10 mt-5">
+            <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:h-unset md:order-first order-first">
+            </div>
+            <ServiceCard
+                    title="Ad creatives and promotion"
+                    description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                    bgColor="bg-green"
+                    price="199"
+                    buttonText="Get Started"
+            />
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-5 md:mt-10 mt-5">
+            <ServiceCard
+                    title="Websites and development"
+                    description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                    bgColor="bg-green"
+                    price="199"
+                    buttonText="Get Started"
+            />
+            <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first">
+            </div>
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-20 md:mt-20 mt-16">
+            <div class="md:w-1/3">
+                <img src="/logos.svg" alt="logos" class="md:w-1/3"/>
+                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Answering your questions</p>
+                <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">Unlimited
+                    revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for
+                    a flat fee in only two days.</p>
+                <button class="border-2 border-secondary rounded-lg px-3 py-2.5 md:mt-10 mt-6 text-secondary font-semibold hover:bg-secondary hover:text-primary">
+                    Contact Us
+                </button>
+            </div>
+            <div class="flex flex-col gap-5 md:w-2/3 md:mt-0 mt-10">
+                {quizButtons.map((data) =>
+                        <div class="bg-secondary md:px-5 px-4 py-4 flex flex-row items-center justify-between">
+                            <p class="md:text-3xl text-xl">{data}</p>
+                            <img src="/arrow-down.svg" alt="arrow-down" class="md:w-4 md:h-4 h-3 w-3"/>
+                        </div>
+                )}
+            </div>
+        </div>
+        <div class="flex flex-row md:items-center items-start justify-between w-full md:mt-20 mt-16">
+            <div class="flex md:flex-row flex-col md:gap-5 items-start gap-2">
+                <button class="md:text-xl text-secondary hover:underline md:py-4">Terms of Service</button>
+                <button class="md:text-xl text-secondary hover:underline md:py-4">Contact Us</button>
+            </div>
+            <button class="md:text-xl text-secondary hover:underline md:py-4">Made by GAAS</button>
+        </div>
+    </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+    .hidden-custom {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .hidden-custom {
+            display: block;
+        }
+    }
 </style>

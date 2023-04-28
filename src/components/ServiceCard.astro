@@ -1,0 +1,32 @@
+---
+export interface Props {
+	title: string;
+	body: string;
+	bgColor: string;
+	buttonText: string;
+}
+
+const { description, title, price, bgColor, buttonText } = Astro.props;
+---
+<div class={`md:h-[640px] h-[380px] md:w-1/3 flex flex-col items-center justify-between ${bgColor} md:px-6 md:py-8 px-5 py-5`}>
+    <p class="md:text-3xl text-xl font-bold md:w-1/2 text-center">{title}</p>
+    <div class="flex flex-col items-center text-center">
+        <img src="/logos.svg" class="md:w-2/5 w-1/3" alt="Logos" />
+        <p class="md:font-semibold md:text-xl mt-6">
+            {description}
+        </p>
+    </div>
+    <div class="flex flex-row justify-between items-center w-full">
+        <div class="flex flex-col items-start">
+            <p class="md:text-xl text-xs">
+                Starting
+            </p>
+            <p class="text-3xl md:font-bold font-medium">
+                {price}$
+            </p>
+        </div>
+        <button class="border-2 border-primary rounded-lg px-3 py-2.5 text-primary font-semibold hover:bg-primary hover:text-white">
+            {buttonText}
+        </button>
+    </div>
+</div>
