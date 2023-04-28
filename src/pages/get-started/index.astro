@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ServiceList from '../../components/ServiceList.svelte';
 import Logo from '../../components/Logo.astro';
 ---
 
@@ -10,93 +11,7 @@ import Logo from '../../components/Logo.astro';
 >
     <main class="px-5 py-6 md:p-10 bg-primary min-h-screen">
         <Logo title="DisruptDesign"/>
-        <div class="grid grid-cols-2 mt-14">
-            <div class="flex flex-col items-start justify-start bg-green py-8 px-6 gap-6">
-                <div class="flex flex-row gap-4">
-                    <div class="w-9 h-9 border-4 flex items-center justify-center border-primary rounded-full font-black text-xl">
-                        1
-                    </div>
-                    <p class="text-3xl font-bold">
-                        Choose the right Setup
-                    </p>
-                </div>
-                <div class="flex flex-row items-center justify-between w-full mt-18">
-                    <div class="flex flex-col items-start w-3/5">
-                        <p class="text-xl font-bold">
-                            Logotype
-                        </p>
-                        <p class="opacity-60">
-                            Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle
-                            of the process for a flat fee in only two days.
-                        </p>
-                    </div>
-                    <div class="flex flex-row items-center justify-between gap-3">
-                        <p class="text-xl font-bold">
-                            $450
-                        </p>
-                        <img src="/icon-add.svg" alt="Add" class="w-5 h-5"/>
-                    </div>
-                </div>
-                <div class="w-full flex flex-row justify-between items-center">
-                    <p class="text-xl">Payment provider commission</p>
-                    <p class="text-xl">4%</p>
-                </div>
-                <div class="w-full flex flex-row justify-between items-center">
-                    <p class="text-xl">Promo-code</p>
-                    <p class="text-xl">-25%</p>
-                </div>
-                <div class="bg-primary h-0.5 w-full"/>
-                <div class="w-full flex flex-row justify-between items-center">
-                    <p class="text-3xl font-bold">Total</p>
-                    <p class="text-3xl font-bold">$450</p>
-                </div>
-            </div>
-            <div class="flex flex-col items-start justify-between bg-secondary py-8 px-6">
-                <div>
-                    <div class="flex flex-row gap-4">
-                        <div class="w-9 h-9 border-4 flex items-center justify-center border-primary rounded-full font-black text-xl">
-                            2
-                        </div>
-                        <p class="text-3xl font-bold">
-                            Fill up your contacts
-                        </p>
-                    </div>
-                    <div class="mt-14 w-full flex flex-col gap-8">
-                        <label>
-                            <input type="text" placeholder="Country of citizenship"
-                                   class="border border-neutral-200 px-3 py-4 w-full">
-                        </label>
-                        <label>
-                            <input type="text" placeholder="Country of citizenship"
-                                   class="border border-neutral-200 px-3 py-4 w-full">
-                        </label>
-                        <label>
-                            <input type="text" placeholder="Country of citizenship"
-                                   class="border border-neutral-200 px-3 py-4 w-full">
-                        </label>
-                    </div>
-                </div>
-                <div class="flex flex-row justify-between items-start">
-                    <p class="text-xl">
-                        Understand valuable products and find opportunities for grow by detalized start-up reviews
-                    </p>
-                    <button class="border-2 border-primary rounded-lg px-3 py-2.5 text-primary font-semibold hover:bg-primary hover:text-white">
-                        Checkout
-                    </button>
-                </div>
-            </div>
-        </div>
+        <ServiceList client:load/>
     </main>
 </Layout>
 
-<style>
-    .hidden-custom {
-        display: none;
-    }
-
-    @media (min-width: 768px) {
-        .hidden-custom {
-            display: block;
-        }
-    }
-</style>
