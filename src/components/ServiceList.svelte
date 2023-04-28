@@ -100,7 +100,7 @@
         </div>
     </div>
     <div class="flex flex-col items-start justify-between bg-secondary pt-8 pb-10 px-6">
-        <div>
+        <div class="w-full">
             <div class="flex flex-row gap-4">
                 <div class="w-9 h-9 border-4 flex items-center justify-center border-primary rounded-full font-black text-xl">
                     2
@@ -110,18 +110,12 @@
                 </p>
             </div>
             <div class="mt-14 w-full flex flex-col gap-8">
-                <label>
-                    <input type="text" placeholder="Country of citizenship"
-                           class="border border-neutral-200 px-3 py-4 w-full">
-                </label>
-                <label>
-                    <input type="text" placeholder="Country of citizenship"
-                           class="border border-neutral-200 px-3 py-4 w-full">
-                </label>
-                <label>
-                    <input type="text" placeholder="Country of citizenship"
-                           class="border border-neutral-200 px-3 py-4 w-full">
-                </label>
+                <input type="text" placeholder="Country of citizenship"
+                       class="block border border-neutral-200 px-3 py-4 w-full box-border">
+                <input type="text" placeholder="Country of citizenship"
+                       class="block border border-neutral-200 px-3 py-4 w-full box-border">
+                <input type="text" placeholder="Country of citizenship"
+                       class="block border border-neutral-200 px-3 py-4 w-full box-border">
             </div>
         </div>
         <div class="flex flex-row justify-start items-start gap-10">
