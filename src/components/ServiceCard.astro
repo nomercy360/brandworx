@@ -25,10 +25,8 @@ const {description, title, price, bgColor, buttonText} = Astro.props;
                 {price}$
             </p>
         </div>
-        <button class="border-2 border-primary rounded-lg px-3 py-2.5 text-primary font-semibold hover:bg-primary hover:text-white">
-            <a href="/get-started">
-                {buttonText}
-            </a>
+        <button class="border-2 border-primary rounded-lg px-3 py-2.5 text-primary font-semibold">
+            {buttonText}
         </button>
     </div>
 </div>
