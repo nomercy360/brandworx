@@ -531,6 +531,11 @@
     deepmerge "^4.2.2"
     escalade "^3.1.1"
 
+"@rive-app/canvas@^1.1.4":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@rive-app/canvas/-/canvas-1.1.4.tgz#261fc6b03a475466f43f217f57a01aedba69f17b"
+  integrity sha512-Pw6xXxxXG2rH2GPUin5P4uejUcRCYTVuz+XiqRTYpWHDcs/+meUBTZBQctAaSEYzsNZcvn/+H1SOemHrQlHB2g==
+
 "@sveltejs/vite-plugin-svelte@^2.0.2":
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/@sveltejs/vite-plugin-svelte/-/vite-plugin-svelte-2.1.1.tgz#df08dba9094208a2048968e329237be6893cf66d"

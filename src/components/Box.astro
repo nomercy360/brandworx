@@ -2,4 +2,6 @@
 const {bgColor, colSpan = ''} = Astro.props;
 ---
 
-<div class={`md:h-[140px] h-[64px] ${bgColor} ${colSpan}`}></div>
+<div class={`md:h-[140px] h-[64px] ${bgColor} ${colSpan} flex items-center`}>
+    <slot />
+</div>

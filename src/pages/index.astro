@@ -36,7 +36,24 @@ const quizButtons = [
     },
 ]
 ---
+<script>
+    import {Rive, Layout, Fit} from "@rive-app/canvas";
 
+    const layout = new Layout({
+        fit: Fit.Cover
+    })
+
+    const r = new Rive({
+        src: "https://cdn.rive.app/animations/vehicles.riv",
+        canvas: document.getElementById("canvas"),
+        autoplay: true,
+        layout: layout,
+        stateMachines: "bumpy",
+        onLoad: () => {
+            r.resizeDrawingSurfaceToCanvas();
+        },
+    });
+</script>
 <Layout
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
@@ -64,7 +81,9 @@ const quizButtons = [
                 </button>
             </div>
             <div class="grid grid-cols-6 md:w-2/3 md:order-2 order-1">
-                <Box bgColor="bg-green"/>
+                <Box bgColor="bg-green">
+                    <canvas id="canvas" width="74" height="70"></canvas>
+                </Box>
                 <Box bgColor="bg-gray"/>
                 <Box bgColor="bg-green" colSpan="col-span-4"/>
                 <Box bgColor="bg-primary" colSpan="col-span-2"/>
