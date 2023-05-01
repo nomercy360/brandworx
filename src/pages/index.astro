@@ -78,6 +78,17 @@ const quizButtons = [
         },
     });
 
+    const r4 = new Rive({
+        src: "https://public.rive.app/hosted/185110/56149/hjaWRAZAZ0G6565ya_a5Sw.riv",
+        canvas: document.getElementById("brands"),
+        layout: layout,
+        autoplay: true,
+        animations: "State Machine 1",
+        onLoad: () => {
+            r4.resizeDrawingSurfaceToCanvas();
+        },
+    });
+
 
 </script>
 <Layout
@@ -106,7 +117,9 @@ const quizButtons = [
                     Take a quiz
                 </button>
             </div>
-            <Box/>
+            <div class="md:order-2 order-1 h-full w-full xl:w-[840px] lg:w-[720px] md:w-[540px] min-w-0 md:px-0 aspect-square rounded-2xl">
+                <canvas id="brands" class="w-full h-full rounded-2xl" data-rive-embed></canvas>
+            </div>
         </div>
         <a href="/get-started" class="get-started-link">
             <div class="flex md:flex-row flex-col md:gap-5 md:mt-10 mt-5 get-started">
