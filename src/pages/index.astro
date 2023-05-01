@@ -44,15 +44,41 @@ const quizButtons = [
     })
 
     const r = new Rive({
-        src: "https://cdn.rive.app/animations/vehicles.riv",
+        src: "https://public.rive.app/community/runtime-files/4847-9809-happy-dragon.riv",
         canvas: document.getElementById("canvas"),
-        autoplay: true,
         layout: layout,
-        stateMachines: "bumpy",
+        autoplay: true,
+        animations: "State Machine 1",
         onLoad: () => {
             r.resizeDrawingSurfaceToCanvas();
         },
     });
+
+    const r2 = new Rive({
+        src: "https://public.rive.app/community/runtime-files/3328-7026-rivetober01gargoyle.riv",
+        canvas: document.getElementById("canvas2"),
+        layout: layout,
+        autoplay: true,
+        animations: "State Machine 1",
+        artboard: "Gargoyle",
+        onLoad: () => {
+            r2.resizeDrawingSurfaceToCanvas();
+        },
+    });
+
+    const r3 = new Rive({
+        src: "https://public.rive.app/community/runtime-files/110-170-flying-car.riv",
+        canvas: document.getElementById("canvas3"),
+        layout: layout,
+        autoplay: true,
+        animations: "Animation",
+        artboard: "New Artboard",
+        onLoad: () => {
+            r3.resizeDrawingSurfaceToCanvas();
+        },
+    });
+
+
 </script>
 <Layout
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
@@ -91,13 +117,15 @@ const quizButtons = [
                         price="199"
                         buttonText="Get Started"
                 />
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first">
+                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first border border-neutral-200">
+                    <canvas id="canvas2" class="w-full h-full" data-rive-embed></canvas>
                 </div>
             </div>
         </a>
         <a href="/get-started" class="get-started-link">
             <div class="flex md:flex-row flex-col md:gap-5 md:mt-5 mt-5 get-started">
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:h-unset md:order-first order-first">
+                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:h-unset md:order-first order-first border border-neutral-200">
+                    <canvas id="canvas" class="w-full h-full" data-rive-embed></canvas>
                 </div>
                 <ServiceCard
                         title="Ad creatives and promotion"
@@ -118,6 +146,7 @@ const quizButtons = [
                         buttonText="Get Started"
                 />
                 <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first">
+                    <canvas id="canvas3" class="w-full h-full" data-rive-embed></canvas>
                 </div>
             </div>
         </a>
