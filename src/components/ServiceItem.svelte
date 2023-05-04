@@ -15,18 +15,19 @@
 </script>
 
 <div
-        class="flex flex-row items-center justify-between w-full"
+        class="flex flex-col items-center justify-between w-full bg-light-gray-2 p-5 md:h-[280px] h-full"
         on:click={handleClick}
 >
-    <div class="flex flex-col items-start w-3/5">
-        <p class="text-xl font-bold">
+    <div class="flex flex-col items-start">
+        <img src="/logo-small.svg" alt="Logo" class="w-8 h-8 mb-2"/>
+        <p class="md:text-xl text-base font-bold mb-1">
             {title}
         </p>
         <p class="opacity-60">
             {description}
         </p>
     </div>
-    <div class="flex flex-row items-center gap-2">
+    <div class="flex flex-row items-center justify-between w-full md:mt-0 mt-6">
         <p class="text-xl font-bold">
             ${price}
         </p>

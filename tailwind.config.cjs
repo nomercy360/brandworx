@@ -19,6 +19,7 @@ module.exports = {
                 'red': '#DD1F1F',
                 'light-gray': '#EBEFEE',
                 'blue': '#3478F6',
+                'light-gray-2': '#F8F8F8',
                 'steel-blue': '#91A5BA',
             },
             textColor: {

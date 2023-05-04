@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ServiceList from '../../components/ServiceList.svelte';
-import Logo from '../../components/Logo.astro';
 ---
 
 <Layout
@@ -9,8 +8,7 @@ import Logo from '../../components/Logo.astro';
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
         keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
 >
-    <main class="px-5 py-6 md:p-10 md:pb-0 bg-primary min-h-screen">
-        <Logo title="DisruptDesign"/>
+    <main class="min-h-screen p-4 md:p-10">
         <ServiceList client:load/>
     </main>
 </Layout>
