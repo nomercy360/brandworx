@@ -120,8 +120,7 @@
             paypalButtonsContainer = document.querySelector("#paypal-buttons");
         }
 
-        if (!mobile && currentScreen !== 2) {
-            paypalButtonsContainer.style.display = "none";
+        if (!mobile && window.innerWidth < 768) {
             return;
         }
 
