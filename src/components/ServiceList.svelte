@@ -45,7 +45,7 @@
     ];
     export let selectedServices = new Set();
     export let commissionPercentage = 4;
-    export let promoCodeDiscount = 25;
+    export let promoCodeDiscount = 0;
     export let totalPriceDiscounted = 0;
 
     const dispatch = createEventDispatcher();
@@ -78,6 +78,10 @@
         let commission = discountedPrice * (commissionPercentage / 100);
         totalPriceDiscounted = discountedPrice + commission;
         renderPaypalButtons();
+    }
+
+    $: if (promoCodeDiscount > 0) {
+        updateTotalPrice();
     }
 
     let name = '';
@@ -164,6 +168,32 @@
             }).render(`#paypal-buttons${mobile ? '-mobile' : ''}`); // Renders the PayPal button
 
             paypalButtonRendered = true;
+        }
+    }
+
+    async function submit() {
+        const response = await fetch('/api/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                social: social,
+                email: email,
+                zone: zone,
+                services: Array.from(selectedServices),
+                total: totalPriceDiscounted,
+                discount: promoCodeDiscount
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            alert('Your order has been submitted successfully!');
+        } else {
+            alert('There was an error submitting your order. Please try again later.');
         }
     }
 </script>
@@ -290,13 +320,17 @@
         <CheckoutFields
                 totalPrice={totalPriceDiscounted.toFixed(2)}
                 commissionPercentage={commissionPercentage}
-                promoCodeDiscount={promoCodeDiscount}
+                bind:promoCodeDiscount={promoCodeDiscount}
         />
         <p class="opacity-60 text-lg font-medium mt-6 mb-7">
             If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
         </p>
         <ContactUsButton marginBottom={14}/>
-        <div id="paypal-buttons"></div>
+        <!--        <div id="paypal-buttons"></div>-->
+        <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
+                on:click={submit}>
+            Checkout
+        </button>
     </div>
 </div>
 

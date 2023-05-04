@@ -1,0 +1,4 @@
+[[d1_databases]]
+binding = "BRANDWORX_DB"
+database_name = "brandworx"
+database_id = "brandworx"
