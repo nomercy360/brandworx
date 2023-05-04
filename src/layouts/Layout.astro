@@ -19,6 +19,16 @@ const {title, description, keywords} = Astro.props;
     <meta name="generator" content={Astro.generator}/>
     <title>{title}</title>
 </head>
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = 'https://www.paypal.com/sdk/js?client-id=AWULcyDAI-rJl4RtQiRGpS-df_fMhBoiWX9ZvIyXwH1iv2nyAecqpWwdDCfvPar2FweiAzHoApM02yPu';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'paypal-js'));
+</script>
 <body>
 <slot/>
 </body>

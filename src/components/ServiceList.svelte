@@ -77,6 +77,7 @@
         let discountedPrice = totalPrice * (1 - promoCodeDiscount / 100);
         let commission = discountedPrice * (commissionPercentage / 100);
         totalPriceDiscounted = discountedPrice + commission;
+        renderPaypalButtons();
     }
 
     let name = '';
@@ -89,12 +90,81 @@
     function goToNextScreen() {
         if (currentScreen < 2) {
             currentScreen++;
+
+            // If on the second screen, render PayPal buttons
+            if (currentScreen === 2) {
+                renderPaypalButtons(true);
+            }
         }
     }
 
     function goToPreviousScreen() {
         if (currentScreen > 0) {
             currentScreen--;
+        }
+        // Hide PayPal buttons
+        if (currentScreen === 1) {
+            const paypalButtonsContainer = document.querySelector("#paypal-buttons-mobile");
+            paypalButtonsContainer.style.display = "none";
+        }
+    }
+
+    let purchaseUnits = [];
+    let paypalButtonRendered = false;
+
+    function renderPaypalButtons(mobile = false) {
+        let paypalButtonsContainer;
+        if (mobile) {
+            paypalButtonsContainer = document.querySelector("#paypal-buttons-mobile");
+        } else {
+            paypalButtonsContainer = document.querySelector("#paypal-buttons");
+        }
+
+        if (!mobile && currentScreen !== 2) {
+            paypalButtonsContainer.style.display = "none";
+            return;
+        }
+
+        if (totalPriceDiscounted > 0) {
+            paypalButtonsContainer.style.display = "block";
+        } else {
+            paypalButtonsContainer.style.display = "none";
+        }
+
+        purchaseUnits = [
+            {
+                amount: {
+                    value: totalPriceDiscounted.toFixed(2),
+                },
+            },
+        ];
+
+        if (!paypalButtonRendered && totalPriceDiscounted > 0) {
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    // Set up the transaction
+                    return actions.order.create({
+                        purchase_units: purchaseUnits,
+                    });
+                },
+                onApprove: function (data, actions) {
+                    // Capture the funds from the transaction
+                    return actions.order.capture().then(function (details) {
+                        // Show a success message to your buyer
+                        alert("Transaction completed by " + details.payer.name.given_name);
+                        // TODO: Add your logic here to handle the successful payment, such as updating your database or sending a confirmation email
+                    });
+                },
+                style: {
+                    color: 'blue', // or 'gold', 'blue', 'silver', 'white', 'black'
+                    shape: 'rect', // or 'pill'
+                    label: 'checkout', // or 'buynow', 'pay', 'installment'
+                    size: 'responsive', // or 'small', 'medium', 'large'
+                    height: 48, // Optional, specify the height of the button
+                },
+            }).render(`#paypal-buttons${mobile ? '-mobile' : ''}`); // Renders the PayPal button
+
+            paypalButtonRendered = true;
         }
     }
 </script>
@@ -153,26 +223,29 @@
                     commissionPercentage={commissionPercentage}
                     promoCodeDiscount={promoCodeDiscount}
             />
+
         {/if}
         <div class="fixed bottom-0 left-0 w-full right-0 px-4 py-5 bg-secondary">
-            {#if currentScreen === 1}
+            <div id="paypal-buttons-mobile"></div>
+            {#if currentScreen === 0}
+                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
+                        on:click={goToNextScreen}>
+                    Next
+                </button>
+            {:else if currentScreen === 1}
                 <p class="opacity-40 mb-5 font-medium">
                     By taping checkout button, you agree to the Terms of Service & Privacy Policy
                 </p>
+                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
+                        on:click={goToNextScreen}>
+                    Next
+                </button>
             {:else if currentScreen === 2}
                 <p class="opacity-60 mb-3 font-medium text-lg text-center">
                     If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
                 </p>
                 <ContactUsButton marginBottom={20}/>
             {/if}
-
-            <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg" on:click={goToNextScreen}>
-                {#if currentScreen === 2}
-                    Pay ${totalPriceDiscounted}
-                {:else}
-                    Next
-                {/if}
-            </button>
         </div>
     </div>
 </div>
@@ -223,17 +296,8 @@
         <p class="opacity-60 text-lg font-medium mt-6 mb-7">
             If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
         </p>
-        <ContactUsButton/>
-        {#if totalPriceDiscounted > 0}
-            <button class="w-full bg-primary text-secondary py-4 font-bold text-lg rounded-xl mt-7 flex flex-row justify-between px-4">
-            <span class="total-price-item">
-                ${totalPriceDiscounted.toFixed(2)}
-            </span>
-                <span>
-                Pay with PayPal
-            </span>
-            </button>
-        {/if}
+        <ContactUsButton marginBottom={14}/>
+        <div id="paypal-buttons"></div>
     </div>
 </div>
 
@@ -253,5 +317,9 @@
             visibility: hidden;
             display: none;
         }
+    }
+
+    #paypal-buttons, #paypal-buttons-mobile {
+        display: none;
     }
 </style>
