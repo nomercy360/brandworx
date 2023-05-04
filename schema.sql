@@ -22,4 +22,16 @@ CREATE TABLE Orders (
     total INTEGER NOT NULL,
     discount INTEGER NOT NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-)
+);
+
+DROP TABLE IF EXISTS Admin;
+CREATE TABLE Admin (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO Admin (username, password) VALUES ('admin', '2597a7caf656e89e9ab35e12326d557ebfe9b7b5dcbe4c564e74070fa5cfcbe5');
+
+

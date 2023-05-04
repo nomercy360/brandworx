@@ -1,0 +1,21 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import AdminView from "../../components/AdminView.svelte";
+import LogoutButton from "../../components/LogoutButton.svelte";
+---
+
+<Layout
+        title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
+        description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
+        keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
+>
+    <header class="px-4 flex flex-row justify-between items-center bg-neutral-700 text-neutral-100 py-1.5">
+        <div>
+            <h1 class="text-3xl font-bold">Orders</h1>
+            <p class="">View and manage your orders.</p>
+        </div>
+        <LogoutButton client:load />
+    </header>
+    <AdminView client:load/>
+</Layout>
+
