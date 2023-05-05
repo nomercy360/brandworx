@@ -58,6 +58,21 @@ export async function onRequest(context) {
 
     const ps = context.env.BRANDWORX_DB.prepare('INSERT INTO Orders (name, social, email, zone, services, total, discount, paypal_order_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *');
 
+    return Response.json({
+            name: data.name,
+            social: data.social,
+            email: data.email,
+            zone: data.zone,
+            services: data.services,
+            total: data.total,
+            discount: data.discount,
+            // @ts-ignore
+            paypal_order_id: paypalOrder.id,
+            // @ts-ignore
+            status: paypalOrder.status
+        },
+        {status: 200});
+
     // @ts-ignore
     const order = ps.bind(data.name, data.social, data.email, data.zone, data.services, data.total, data.discount, paypalOrder.id, paypalOrder.status).first()
 
