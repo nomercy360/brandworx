@@ -26,15 +26,6 @@ async function generatePayPalAccessToken() {
     return json.access_token;
 }
 
-
-// services = [
-//     {
-//         id: 1,
-//         title: 'Logotype',
-//         description: 'Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.',
-//         price: 300
-//     },
-//     ..
 export async function onRequest(context) {
     const {
         request,
@@ -74,7 +65,7 @@ export async function onRequest(context) {
         return Response.json({error: 'Something went wrong'}, {status: 500});
     }
 
-    return Response.json(paypalOrder, {status: 200});
+    return Response.json({order}, {status: 200});
 }
 
 
