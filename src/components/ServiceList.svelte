@@ -113,8 +113,13 @@
         }
     }
 
-    let purchaseUnits = [];
     let paypalButtonRendered = false;
+
+    let formIsValid = false;
+
+    function handleFormValidated(event) {
+        formIsValid = event.detail;
+    }
 
     function renderPaypalButtons(mobile = false) {
         let paypalButtonsContainer;
@@ -134,29 +139,23 @@
             paypalButtonsContainer.style.display = "none";
         }
 
-        purchaseUnits = [
-            {
-                amount: {
-                    value: totalPriceDiscounted.toFixed(2),
-                },
-            },
-        ];
-
         if (!paypalButtonRendered && totalPriceDiscounted > 0) {
             paypal.Buttons({
-                createOrder: function (data, actions) {
-                    // Set up the transaction
-                    return actions.order.create({
-                        purchase_units: purchaseUnits,
-                    });
+                onClick: function (data, actions) {
+                    const isVerified = validateForm();
+                    console.log(isVerified);
+                    return isVerified;
                 },
-                onApprove: function (data, actions) {
-                    // Capture the funds from the transaction
-                    return actions.order.capture().then(function (details) {
-                        // Show a success message to your buyer
-                        alert("Transaction completed by " + details.payer.name.given_name);
-                        // TODO: Add your logic here to handle the successful payment, such as updating your database or sending a confirmation email
-                    });
+                createOrder: async function (data, actions) {
+                    return await createDbOrder();
+                },
+                onApprove: async function (data, actions) {
+                    const result = await captureOrder(data.orderID);
+                    if (result.status === "COMPLETED") {
+                        window.location.href = "/order-success";
+                    } else {
+                        window.location.href = "/order-failed";
+                    }
                 },
                 style: {
                     color: 'blue', // or 'gold', 'blue', 'silver', 'white', 'black'
@@ -171,31 +170,83 @@
         }
     }
 
-    async function submit() {
-        const response = await fetch('/api/submit', {
-            method: 'POST',
+    async function captureOrder(orderID) {
+        const response = await fetch("/api/capture-paypal-order", {
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                name: name,
-                social: social,
-                email: email,
-                zone: zone,
-                services: Array.from(selectedServices),
-                total: totalPriceDiscounted,
-                discount: promoCodeDiscount
+                paypalOrderId: orderID,
             })
         });
 
-        const data = await response.json();
+        return await response.json();
+    }
 
-        if (data.success) {
-            alert('Your order has been submitted successfully!');
-        } else {
-            alert('There was an error submitting your order. Please try again later.');
+    async function createDbOrder() {
+        try {
+            const response = await fetch('/api/create-paypal-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    social: social,
+                    email: email,
+                    zone: zone,
+                    services: Array.from(selectedServices),
+                    total: totalPriceDiscounted,
+                    discount: promoCodeDiscount
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            } else {
+                const data = await response.json();
+                return data.id;
+            }
+        } catch (error) {
+            // Show an error message to the user
+            console.error('Error creating order:', error);
         }
     }
+
+    let nameError = '';
+    let socialError = '';
+    let emailError = '';
+    let zoneError = '';
+
+    export function validateForm() {
+        if (!name) {
+            nameError = 'Please enter your name.';
+        } else {
+            nameError = '';
+        }
+
+        if (!social) {
+            socialError = 'Please enter your social link.';
+        } else {
+            socialError = '';
+        }
+
+        if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+            emailError = 'Please enter a valid email address.';
+        } else {
+            emailError = '';
+        }
+
+        if (!zone) {
+            zoneError = 'Please enter your time zone.';
+        } else {
+            zoneError = '';
+        }
+
+        return !nameError && !socialError && !emailError && !zoneError;
+    }
+
 </script>
 
 <div class="mobile mx-auto">
@@ -239,7 +290,8 @@
             <p class="text-xl font-medium opacity-60 text-center mb-8">
                 We’ll contact you in working hours.
             </p>
-            <FormFields bind:name={name} bind:email={email} bind:social={social} bind:zone={zone}/>
+            <FormFields bind:name={name} bind:email={email} bind:social={social} bind:zone={zone}
+                        nameError={nameError} emailError={emailError} socialError={socialError} zoneError={zoneError}/>
         {:else if currentScreen === 2}
             <p class="text-3xl font-bold mt-5">
                 Review your order
@@ -309,7 +361,16 @@
         <p class="text-xl font-medium opacity-60 mb-6">
             We’ll contact you in working hours.
         </p>
-        <FormFields bind:name={name} bind:email={email} bind:social={social} bind:zone={zone}/>
+        <FormFields on:formValidated={handleFormValidated}
+                    bind:name={name}
+                    bind:email={email}
+                    bind:social={social}
+                    bind:zone={zone}
+                    nameError={nameError}
+                    emailError={emailError}
+                    socialError={socialError}
+                    zoneError={zoneError}
+        />
 
         <p class="text-3xl font-bold mt-5">
             Review your order
@@ -326,11 +387,7 @@
             If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
         </p>
         <ContactUsButton marginBottom={14}/>
-        <!--        <div id="paypal-buttons"></div>-->
-        <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
-                on:click={submit}>
-            Checkout
-        </button>
+        <div id="paypal-buttons"></div>
     </div>
 </div>
 

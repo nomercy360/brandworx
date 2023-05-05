@@ -1,8 +1,9 @@
+// @ts-ignore
+import jwt from '@tsndr/cloudflare-worker-jwt';
+
 interface Env {
     BRANDWORX_DB: D1Database;
 }
-
-import jwt from '@tsndr/cloudflare-worker-jwt'
 
 export async function onRequest(context) {
     const {request, env} = context;
