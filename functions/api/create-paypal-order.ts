@@ -65,7 +65,7 @@ export async function onRequest(context) {
         return Response.json({error: 'Something went wrong'}, {status: 500});
     }
 
-    return Response.json({paypalOrder}, {status: 200});
+    return Response.json(paypalOrder, {status: 200});
 }
 
 
