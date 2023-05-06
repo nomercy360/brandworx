@@ -34,7 +34,7 @@
 
 <style>
     .input-item {
-        @apply block border border-neutral-200 px-3 py-4 w-full box-border;
+        @apply block border border-neutral-200 px-3 py-4 w-full box-border rounded-xl;
     }
 
     .input-label {

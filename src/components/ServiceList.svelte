@@ -8,39 +8,67 @@
     const services = [
         {
             id: 1,
-            title: 'Logotype',
-            description: 'Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.',
-            price: 300
+            title: 'Naming',
+            description: 'Remarkable name with available and cheap domain name.',
+            price: 300,
+            bgColor: 'bg-yellow',
+            icon: 'letters'
         },
         {
             id: 2,
-            title: 'Visual Identity',
-            description: 'Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.',
-            price: 300
+            title: 'Logotype & Brandbook',
+            description: 'Memorable and handcrafted logo, complete with a basic brand book, typography and color scheme.',
+            price: 300,
+            bgColor: 'bg-green',
+            icon: 'a-letter'
         },
         {
             id: 3,
-            title: 'Social network templates',
-            description: 'Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.',
-            price: 300
+            title: 'Brand Identity',
+            description: 'Increase engagement and conversions of your social media with Google, Youtube, Instagram, ot twitter media plan, based on data and interests of your audience.',
+            price: 300,
+            bgColor: 'bg-brown',
+            icon: 'eye'
         },
         {
             id: 4,
-            title: 'Ad creatives',
-            description: 'Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.',
-            price: 300
+            title: 'Website',
+            description: 'We know how to increase conversion changing only texts. So we will describe and illustrate your product to attract customers and investors.',
+            price: 300,
+            bgColor: 'bg-light-red',
+            icon: 'click'
         },
         {
             id: 5,
             title: 'Pitch-deck',
-            description: 'We know how to increase conversion changing only texts. So we will describe and illustrate your product to attract customers and investors.',
-            price: 300
+            description: 'Increase conversion of your ads with strong messages and graphics.',
+            price: 300,
+            bgColor: 'bg-blue',
+            icon: 'message'
         },
         {
             id: 6,
-            title: 'Website',
+            title: 'Development',
+            description: 'Allow us to implement your idea and create a product that will be loved by your customers.',
+            price: 300,
+            bgColor: 'bg-brown',
+            icon: 'brackets'
+        },
+        {
+            id: 7,
+            title: 'Advertising creatives',
+            description: 'Increase conversion of your ads with strong messages and graphics.',
+            price: 300,
+            bgColor: 'bg-blue',
+            icon: 'google'
+        },
+        {
+            id: 8,
+            title: 'Media Plan',
             description: 'Increase engagement and conversions of your social media with Google, Youtube, Instagram, ot twitter media plan, based on data and interests of your audience.',
-            price: 300
+            price: 300,
+            icon: 'instagram',
+            bgColor: 'bg-purple'
         }
     ];
     export let selectedServices = new Set();
@@ -299,6 +327,8 @@
                             price={service.price}
                             selected={selectedServices.has(service.id)}
                             on:toggleService={handleToggleService}
+                            bgColor={service.bgColor}
+                            icon={service.icon}
                     />
                 {/each}
             </div>
@@ -358,7 +388,7 @@
         <p class="text-xl font-medium opacity-60">
             Feel free to contact us, if you need something special.
         </p>
-        <div class="grid grid-cols-2 w-full gap-5 mt-8">
+        <div class="grid grid-cols-2 w-full gap-1 mt-8">
             {#each services as service (service.id)}
                 <div class="mt-18">
                     <ServiceItem
@@ -368,6 +398,8 @@
                             price={service.price}
                             selected={selectedServices.has(service.id)}
                             on:toggleService={handleToggleService}
+                            bgColor={service.bgColor}
+                            icon={service.icon}
                     />
                 </div>
             {/each}

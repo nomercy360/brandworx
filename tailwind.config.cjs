@@ -14,9 +14,12 @@ module.exports = {
                 'yellow': '#FFC617',
                 'pink': '#D012A6',
                 'orange': '#FB5521',
+                'brown': '#E38F41',
+                'purple': '#7182EB',
                 'whispering-breeze': '#F5FDE5',
                 'light-black': '#202020',
                 'red': '#DD1F1F',
+                'light-red': '#D84B5D',
                 'light-gray': '#EBEFEE',
                 'blue': '#23C4F8',
                 'light-gray-2': '#F8F8F8',
@@ -28,6 +31,9 @@ module.exports = {
             },
             borderColor: {
                 'secondary': '#FFFFFF',
+                'yellow': '#FFC617',
+                'blue': '#23C4F8',
+                'green': '#00D696',
             },
             colors: {
                 'primary': '#000000',
