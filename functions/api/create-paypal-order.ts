@@ -56,10 +56,12 @@ export async function onRequest(context) {
 
     const paypalOrder = await createPayPalOrder(orderData, accessToken);
 
+    const servicesString = JSON.stringify(data.services);
+
     const ps = context.env.BRANDWORX_DB.prepare('INSERT INTO Orders (name, social, email, zone, services, total, discount, paypal_order_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING *');
 
     // @ts-ignore
-    const order = await ps.bind(data.name, data.social, data.email, data.zone, data.services, data.total, data.discount, paypalOrder.id, paypalOrder.status).first()
+    const order = await ps.bind(data.name, data.social, data.email, data.zone, servicesString, data.total, data.discount, paypalOrder.id, paypalOrder.status).first()
 
     if (!order) {
         return Response.json({error: 'Something went wrong'}, {status: 500});

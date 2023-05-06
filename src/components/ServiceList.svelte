@@ -226,6 +226,13 @@
 
     async function createDbOrder() {
         try {
+            const servicesRequest = Array.from(selectedServices).map((service) => {
+                return {
+                    id: service,
+                    title: services.find((s) => s.id === service).title,
+                    price: services.find((s) => s.id === service).price,
+                };
+            });
             const response = await fetch('/api/create-paypal-order', {
                 method: 'POST',
                 headers: {
@@ -236,7 +243,7 @@
                     social: social,
                     email: email,
                     zone: zone,
-                    services: Array.from(selectedServices),
+                    services: servicesRequest,
                     total: totalPriceDiscounted,
                     discount: promoCodeDiscount
                 })
@@ -351,7 +358,7 @@
             <CheckoutFields
                     totalPrice={totalPriceDiscounted.toFixed(2)}
                     commissionPercentage={commissionPercentage}
-                    promoCodeDiscount={promoCodeDiscount}
+                    bind:promoCodeDiscount={promoCodeDiscount}
             />
 
         {/if}

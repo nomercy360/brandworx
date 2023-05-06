@@ -23,7 +23,7 @@
     }
 </script>
 
-<div class="flex flex-row justify-between items-center mt-3 border border-neutral-200 w-full box-border py-1.5">
+<div class="flex flex-row justify-between items-center mt-3 border border-neutral-200 w-full box-border py-1.5 rounded-xl">
     <input type="text" placeholder="Promo-code" id="promo" class="w-full focus:outline-none h-10 ml-3"
            bind:value={inputValue}/>
     <button class="font-bold bg-primary text-secondary rounded-xl px-4 py-2.5 mr-3 transition-colors duration-500 ease-in-out"

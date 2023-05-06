@@ -24,7 +24,7 @@
 >
     <div class="flex flex-col items-start">
         <img src={`/${icon}.svg`} alt="Logo" width="50" height="50"/>
-        <p class="md:text-xl text-base font-bold mb-1">
+        <p class="md:text-xl text-base font-bold mb-1 md:mt-0 mt-3">
             {title}
         </p>
         <p class="opacity-60">
@@ -36,12 +36,12 @@
             ${price}
         </p>
         <div
-                class='md:bg-opacity-10 bg-transparent bg-primary flex flex-row gap-9 rounded-lg px-3 py-3 items-center'
+                class='bg-opacity-0 md:bg-opacity-10 bg-primary flex flex-row gap-9 rounded-lg px-3 py-3 justify-end items-center md:w-[220px] w-full'
         >
             {#if selected}
-                <span class="text-primary font-bold md:block hidden">Added to order</span>
+                <span class="text-primary font-bold md:block hidden flex-grow whitespace-nowrap">Added to order</span>
             {:else}
-                <span class="text-primary font-bold md:block hidden">Add to order</span>
+                <span class="text-primary font-bold md:block hidden flex-grow whitespace-nowrap">Add to order</span>
             {/if}
             <span class="w-7 h-7 bg-opacity-20 bg-primary flex items-center justify-center rounded-full">
                 {#if selected}
