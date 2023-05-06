@@ -62,7 +62,8 @@
 
         updateTotalPrice();
         dispatch('update:selectedServices', selectedServices);
-        console.log(selectedServices);
+
+        nextScreenButtonDisabled = selectedServices.size <= 0;
     }
 
     function updateTotalPrice() {
@@ -93,9 +94,20 @@
 
     function goToNextScreen() {
         if (currentScreen < 2) {
+            if (nextScreenButtonDisabled) {
+                return;
+            }
+
+            if (currentScreen === 1) {
+                const isVerified = validateForm();
+                if (!isVerified) {
+                    return;
+                }
+            }
+
             currentScreen++;
 
-            // If on the second screen, render PayPal buttons
+            // If on the third screen, render PayPal buttons
             if (currentScreen === 2) {
                 renderPaypalButtons(true);
             }
@@ -247,6 +259,13 @@
         return !nameError && !socialError && !emailError && !zoneError;
     }
 
+    let nextScreenButtonDisabled = true;
+
+    $: if (currentScreen === 1) {
+        nextScreenButtonDisabled = (!name || !social || !email || !zone);
+    } else if (currentScreen === 0) {
+        nextScreenButtonDisabled = selectedServices.size === 0;
+    }
 </script>
 
 <div class="mobile mx-auto">
@@ -309,16 +328,16 @@
         <div class="fixed bottom-0 left-0 w-full right-0 px-4 py-5 bg-secondary">
             <div id="paypal-buttons-mobile"></div>
             {#if currentScreen === 0}
-                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
-                        on:click={goToNextScreen}>
+                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg next-button"
+                        on:click={goToNextScreen} class:disable="{nextScreenButtonDisabled}">
                     Next
                 </button>
             {:else if currentScreen === 1}
                 <p class="opacity-40 mb-5 font-medium">
                     By taping checkout button, you agree to the Terms of Service & Privacy Policy
                 </p>
-                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg"
-                        on:click={goToNextScreen}>
+                <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg next-button"
+                        on:click={goToNextScreen} class:disable="{nextScreenButtonDisabled}">
                     Next
                 </button>
             {:else if currentScreen === 2}
@@ -411,5 +430,10 @@
 
     #paypal-buttons, #paypal-buttons-mobile {
         display: none;
+    }
+
+    .next-button.disable {
+        background-color: #E5E5E5;
+        cursor: not-allowed;
     }
 </style>

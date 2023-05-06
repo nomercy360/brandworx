@@ -4,6 +4,8 @@ import Box from '../components/Box.astro';
 import Logo from '../components/Logo.astro';
 import QuizButton from '../components/QuizButton.svelte';
 import ServiceCard from '../components/ServiceCard.astro';
+import TextCard from "../components/TextCard.astro";
+import GetStartedButtons from "../components/GetStartedButtons.astro";
 
 const quizButtons = [
     {
@@ -43,41 +45,6 @@ const quizButtons = [
         fit: Fit.Cover
     })
 
-    const r = new Rive({
-        src: "https://public.rive.app/community/runtime-files/4847-9809-happy-dragon.riv",
-        canvas: document.getElementById("canvas"),
-        layout: layout,
-        autoplay: true,
-        animations: "State Machine 1",
-        onLoad: () => {
-            r.resizeDrawingSurfaceToCanvas();
-        },
-    });
-
-    const r2 = new Rive({
-        src: "https://public.rive.app/community/runtime-files/3328-7026-rivetober01gargoyle.riv",
-        canvas: document.getElementById("canvas2"),
-        layout: layout,
-        autoplay: true,
-        animations: "State Machine 1",
-        artboard: "Gargoyle",
-        onLoad: () => {
-            r2.resizeDrawingSurfaceToCanvas();
-        },
-    });
-
-    const r3 = new Rive({
-        src: "https://public.rive.app/community/runtime-files/110-170-flying-car.riv",
-        canvas: document.getElementById("canvas3"),
-        layout: layout,
-        autoplay: true,
-        animations: "Animation",
-        artboard: "New Artboard",
-        onLoad: () => {
-            r3.resizeDrawingSurfaceToCanvas();
-        },
-    });
-
     const r4 = new Rive({
         src: "https://public.rive.app/hosted/185110/56149/hjaWRAZAZ0G6565ya_a5Sw.riv",
         canvas: document.getElementById("brands"),
@@ -96,8 +63,8 @@ const quizButtons = [
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
         keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
 >
-    <main class="px-5 py-6 md:p-10 bg-primary">
-        <div class="flex md:flex-row flex-col md:gap-20">
+    <main class="bg-primary">
+        <div class="flex md:flex-row flex-col md:gap-20 px-5 py-6 md:p-10">
             <div class="md:hidden mb-7">
                 <Logo title="DisruptDesign"/>
             </div>
@@ -113,16 +80,16 @@ const quizButtons = [
                     revisions, expertly
                     handcrafted
                     logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days.</p>
-                <button class="border-2 border-secondary rounded-lg px-3 py-2.5 md:mt-10 mt-6 text-secondary font-semibold hover:bg-secondary hover:text-primary">
-                    Take a quiz
-                </button>
+                <div class="flex flex-row gap-4">
+                    <GetStartedButtons/>
+                </div>
             </div>
             <div class="md:order-2 order-1 h-full w-full xl:w-[840px] lg:w-[720px] md:w-[540px] min-w-0 md:px-0 aspect-square rounded-2xl">
                 <canvas id="brands" class="w-full h-full rounded-2xl" data-rive-embed></canvas>
             </div>
         </div>
         <a href="/get-started" class="get-started-link">
-            <div class="flex md:flex-row flex-col md:gap-5 md:mt-10 mt-5 get-started">
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
                 <ServiceCard
                         title="Logotype and visual identity"
                         description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
@@ -130,16 +97,12 @@ const quizButtons = [
                         price="199"
                         buttonText="Get Started"
                 />
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first border border-neutral-200">
-                    <canvas id="canvas2" class="w-full h-full" data-rive-embed></canvas>
+                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl">
                 </div>
             </div>
         </a>
         <a href="/get-started" class="get-started-link">
-            <div class="flex md:flex-row flex-col md:gap-5 md:mt-5 mt-5 get-started">
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:h-unset md:order-first order-first border border-neutral-200">
-                    <canvas id="canvas" class="w-full h-full" data-rive-embed></canvas>
-                </div>
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
                 <ServiceCard
                         title="Ad creatives and promotion"
                         description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
@@ -147,32 +110,56 @@ const quizButtons = [
                         price="199"
                         buttonText="Get Started"
                 />
-            </div>
-        </a>
-        <a href="/get-started" class="get-started-link">
-            <div class="flex md:flex-row flex-col md:gap-5 md:mt-5 mt-5 get-started">
-                <ServiceCard
-                        title="Websites and development"
-                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
-                        bgColor="bg-green"
-                        price="199"
-                        buttonText="Get Started"
-                />
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first">
-                    <canvas id="canvas3" class="w-full h-full" data-rive-embed></canvas>
+                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl">
                 </div>
             </div>
         </a>
-        <div class="flex md:flex-row flex-col md:gap-20 md:mt-20 mt-16">
-            <div class="md:w-1/3">
-                <img src="/logos.svg" alt="logos" class="md:w-1/3"/>
+        <a href="/get-started" class="get-started-link">
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
+                <ServiceCard
+                        title="Websites and development"
+                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                        bgColor="bg-blue"
+                        price="199"
+                        buttonText="Get Started"
+                />
+                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl">
+                </div>
+            </div>
+        </a>
+        <div class="flex md:flex-col items-center justify-center flex-col md:mt-10 mt-12 p-5 md:p-10 text-center">
+            <h1 class="md:text-7xl text-5xl text-white">We are here for growth</h1>
+            <p class="text-secondary opacity-40 md:text-2xl text-xl md:w-2/3 w-full mt-4 font-medium">
+                Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the
+                process for a flat fee in only two days.
+            </p>
+            <div class="flex flex-row gap-4 md:mb-24 mb-12 md:order-last">
+                <GetStartedButtons/>
+            </div>
+            <div class="flex flex-col md:grid md:grid-cols-3 md:gap-0 gap-12 md:mt-28 mt-0 mb-28">
+                <TextCard
+                        title="Launching"
+                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                />
+                <TextCard
+                        title="Improving"
+                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                />
+                <TextCard
+                        title="Pivoting"
+                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                />
+            </div>
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-20 p-5 md:p-10 bg-opacity-10 bg-secondary">
+            <div class="md:w-1/3 flex flex-col md:items-start items-center md:text-start text-center">
                 <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Answering your questions</p>
                 <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">Unlimited
                     revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for
                     a flat fee in only two days.</p>
-                <button class="border-2 border-secondary rounded-lg px-3 py-2.5 md:mt-10 mt-6 text-secondary font-semibold hover:bg-secondary hover:text-primary">
-                    Contact Us
-                </button>
+                <div class="flex flex-row gap-4">
+                    <GetStartedButtons/>
+                </div>
             </div>
             <div class="flex flex-col gap-5 md:w-2/3 md:mt-0 mt-10">
                 {quizButtons.map((data) =>
@@ -180,12 +167,14 @@ const quizButtons = [
                 )}
             </div>
         </div>
-        <div class="flex flex-row md:items-center items-start justify-between w-full md:mt-20 mt-16">
+        <div class="flex flex-row md:items-center items-start justify-between w-full md:px-10 px-5 md:pb-10 pb-5 md:pt-32 pt-16 bg-opacity-10 bg-secondary">
             <div class="flex md:flex-row flex-col md:gap-5 items-start gap-2">
                 <button class="md:text-xl text-secondary hover:underline md:py-4">Terms of Service</button>
                 <button class="md:text-xl text-secondary hover:underline md:py-4">Contact Us</button>
             </div>
-            <button class="md:text-xl text-secondary hover:underline md:py-4">Made by GAAS</button>
+            <a class="md:text-xl text-secondary hover:underline md:py-4" href="https://thegaas.co" target="_blank">
+                Made by GAAS
+            </a>
         </div>
     </main>
 </Layout>
