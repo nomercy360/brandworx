@@ -198,8 +198,9 @@
                     }
                 },
                 style: {
-                    color: 'blue', // or 'gold', 'blue', 'silver', 'white', 'black'
+                    color: 'black', // or 'gold', 'blue', 'silver', 'white', 'black'
                     shape: 'rect', // or 'pill'
+                    layout: 'vertical', // or 'horizontal'
                     label: 'checkout', // or 'buynow', 'pay', 'installment'
                     size: 'responsive', // or 'small', 'medium', 'large'
                     height: 48, // Optional, specify the height of the button
@@ -441,8 +442,11 @@
                 commissionPercentage={commissionPercentage}
                 bind:promoCodeDiscount={promoCodeDiscount}
         />
-        <p class="opacity-60 text-lg font-medium mt-6 mb-7">
+        <p class="opacity-40 font-medium mt-6 mb-7">
             If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
+        </p>
+        <p class="opacity-40 font-medium mt-6 mb-7">
+            By taping checkout button, you agree to the Terms of Service & Privacy Policy
         </p>
         <ContactUsButton marginBottom={14}/>
         <div id="paypal-buttons"></div>

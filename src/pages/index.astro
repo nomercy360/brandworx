@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Box from '../components/Box.astro';
 import Logo from '../components/Logo.astro';
 import QuizButton from '../components/QuizButton.svelte';
 import ServiceCard from '../components/ServiceCard.astro';
@@ -9,33 +8,25 @@ import GetStartedButtons from "../components/GetStartedButtons.astro";
 
 const quizButtons = [
     {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
+        title: 'Design affects sales and revenue',
+        description: 'Design is often viewed as only impacting the appearance of a product. In reality, it has a significant impact on final revenue. For example, if your ad creatives have a 2x boost in click-through rate (CTR), you will achieve 2x more sales using the same budget.If your website is both interesting and easy to understand, it will increase its conversion rate. Additionally, if your product looks, feels, and communicates in the same language as your customers, you will attract more of them.',
     },
     {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
+        title: 'It is possible to measure an effect.',
+        description: 'For web projects, we can measure the effects using A/B testing. On average, our ads achieve 4x more engagement and 2x higher CTR. Our websites also achieve higher engagement, depth of scroll, and conversion rates because we make them interesting to explore.',
     },
     {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
+        title: 'We are conducting research for each project.',
+        description: 'It is essential for us to understand who your customers are. If you want a logo or naming, we will ask you to fill out a brief and tell us about your product. Then, we will conduct market and competitor research. If you want a pitch-deck presentation or website, we will conduct much more in-depth research. For a website, we will use the value proposition canvas, customer development, and deeper market research.',
     },
     {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
+        title: 'Although we work quickly, it still takes time.',
+        description: 'The time required for a task depends on what we are doing. We may be able to develop a logo, name, and advertising in a few days. However, creating websites, pitch-decks, and brands requires more time, but we still work efficiently.',
     },
     {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
-    },
-    {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
-    },
-    {
-        title: 'What is it?',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl. Sed euismod, diam sit amet dictum aliquam, massa diam aliquet nunc, sed lacinia nisl nunc sit amet nisl.',
-    },
+        title: 'Money-back guarantee.',
+        description: 'We always do our best, but we cannot guarantee results. However, we offer money-back guarantee if you are not satisfied with the aesthetics or metrics of the results. ',
+    }
 ]
 ---
 <script>
@@ -160,24 +151,27 @@ const quizButtons = [
         </div>
         <div class="flex md:flex-row flex-col md:gap-20 p-5 md:p-10 bg-opacity-10 bg-secondary">
             <div class="md:w-1/3 flex flex-col md:items-start items-center md:text-start text-center">
-                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Answering your questions</p>
-                <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">Unlimited
-                    revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for
-                    a flat fee in only two days.</p>
+                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Here is what you need to know</p>
+                <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">
+                    Over the past 12 years, we have completed more than 100 projects. Here are the most important things
+                    you should know about working with us:
+                </p>
                 <div class="flex flex-row gap-4">
                     <GetStartedButtons/>
                 </div>
             </div>
             <div class="flex flex-col gap-5 md:w-2/3 md:mt-0 mt-10">
                 {quizButtons.map((data) =>
-                        <QuizButton title={data.title} description={data.description} client:load/>
+                        <QuizButton title={data.title} description={data.description} client:visible/>
                 )}
             </div>
         </div>
         <div class="flex flex-row md:items-center items-start justify-between w-full md:px-10 px-5 md:pb-10 pb-5 md:pt-32 pt-16 bg-opacity-10 bg-secondary">
             <div class="flex md:flex-row flex-col md:gap-5 items-start gap-2">
                 <button class="md:text-xl text-secondary hover:underline md:py-4">Terms of Service</button>
-                <button class="md:text-xl text-secondary hover:underline md:py-4">Contact Us</button>
+                <a class="md:text-xl text-secondary hover:underline md:py-4" href="https://t.me/nickaxel" target="_blank">
+                    Contact Us
+                </a>
             </div>
             <a class="md:text-xl text-secondary hover:underline md:py-4" href="https://thegaas.co" target="_blank">
                 Made by GAAS
