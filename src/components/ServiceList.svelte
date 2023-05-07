@@ -9,66 +9,74 @@
         {
             id: 1,
             title: 'Naming',
-            description: 'Remarkable name with available and cheap domain name.',
-            price: 300,
+            description: 'We always do our best, but we cannot guarantee results. However, we offer money-back guarantee if you are not satisfied with the aesthetics or metrics of the results. ',
+            price: 150,
             bgColor: 'bg-yellow',
-            icon: 'letters'
+            icon: 'letters',
+            time: '3 days'
         },
         {
             id: 2,
-            title: 'Logotype & Brandbook',
-            description: 'Memorable and handcrafted logo, complete with a basic brand book, typography and color scheme.',
-            price: 300,
+            title: 'Logotype',
+            description: 'A memorable and catchy handcrafted logo, complete with a basic brand book, typography, and color scheme. One variant with unlimited revisions.',
+            price: 450,
             bgColor: 'bg-green',
-            icon: 'a-letter'
+            icon: 'a-letter',
+            time: '3 days'
         },
         {
             id: 3,
             title: 'Brand Identity',
-            description: 'Increase engagement and conversions of your social media with Google, Youtube, Instagram, ot twitter media plan, based on data and interests of your audience.',
-            price: 300,
+            description: 'Logotypes, typography, colors, and illustrations, placed in selected locations, such as ad creatives, business cards, cars, or posters.',
+            price: 1100,
             bgColor: 'bg-brown',
-            icon: 'eye'
+            icon: 'eye',
+            time: '14 days'
         },
         {
             id: 4,
             title: 'Website',
-            description: 'We know how to increase conversion changing only texts. So we will describe and illustrate your product to attract customers and investors.',
-            price: 300,
+            description: 'Single-page website that is visually appealing, easy to understand, and encourages engagement and conversion. Figma file, Illustrations are included.',
+            price: 1900,
             bgColor: 'bg-light-red',
-            icon: 'click'
+            icon: 'click',
+            time: '14 days'
         },
         {
             id: 5,
             title: 'Pitch-deck',
-            description: 'Increase conversion of your ads with strong messages and graphics.',
-            price: 300,
+            description: 'A presentation of your product, business plan, and strategy that will be easily understandable for investors. Text for speech and interactive presentation with unlimited revisions.',
+            price: 1900,
             bgColor: 'bg-blue',
-            icon: 'message'
+            icon: 'message',
+            time: '14 days'
         },
         {
             id: 6,
             title: 'Development',
-            description: 'Allow us to implement your idea and create a product that will be loved by your customers.',
-            price: 300,
+            description: 'If you need to develop a website, or app, just let us know. We are working both with web and mobile development.',
+            price: 0,
             bgColor: 'bg-brown',
-            icon: 'brackets'
+            icon: 'brackets',
+            time: 'Individual'
         },
         {
             id: 7,
             title: 'Advertising creatives',
-            description: 'Increase conversion of your ads with strong messages and graphics.',
-            price: 300,
+            description: 'Multiple advertisements with a compelling value proposition and visuals to increase engagement and click-through rates. You will be able to test the results.',
+            price: 550,
             bgColor: 'bg-blue',
-            icon: 'google'
+            icon: 'google',
+            time: '14 days'
         },
         {
             id: 8,
             title: 'Media Plan',
-            description: 'Increase engagement and conversions of your social media with Google, Youtube, Instagram, ot twitter media plan, based on data and interests of your audience.',
-            price: 300,
+            description: 'Data-based report and content plan to increase social media engagement and improve retention of ads. Everything in one document.',
+            price: 700,
             icon: 'instagram',
-            bgColor: 'bg-purple'
+            bgColor: 'bg-purple',
+            time: '5 days'
         }
     ];
     export let selectedServices = new Set();
