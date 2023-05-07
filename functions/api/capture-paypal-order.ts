@@ -1,17 +1,39 @@
-const base = "https://api-m.sandbox.paypal.com";
+interface Env {
+    BRANDWORX_DB: D1Database;
+    PAYPAL_CLIENT_ID: string;
+    PAYPAL_CLIENT_SECRET: string;
+    PAYPAL_API_BASE: string;
+    TELEGRAM_BOT_TOKEN: string;
+    TELEGRAM_CHAT_ID: string;
+}
 
-const PayPalClientId = "AWULcyDAI-rJl4RtQiRGpS-df_fMhBoiWX9ZvIyXwH1iv2nyAecqpWwdDCfvPar2FweiAzHoApM02yPu";
-const PayPalClientSecret = "ECR_ofkNluBPg4_eH--jyWL-B7cNANaH_kpf1xhvlfgi8EScy8X5jK7vLm0OA18AgBuYuKkoeWXMftru";
+export async function sendTelegramMessage(botToken, chatId, message) {
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-async function generatePayPalAccessToken() {
-    const url = base + "/v1/oauth2/token";
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message
+        })
+    });
+
+    return await response.json();
+}
+
+
+async function generatePayPalAccessToken(payPalClientId, payPalClientSecret, payPalApiBase) {
+    const url = payPalApiBase + "/v1/oauth2/token";
 
     const response = await fetch(url, {
         method: "POST",
         body: "grant_type=client_credentials",
         headers: {
             "content-type": "application/x-www-form-urlencoded",
-            'Authorization': 'Basic ' + btoa(PayPalClientId + ':' + PayPalClientSecret),
+            'Authorization': 'Basic ' + btoa(payPalClientId + ':' + payPalClientSecret),
         }
     });
 
@@ -21,9 +43,9 @@ async function generatePayPalAccessToken() {
     return json.access_token;
 }
 
-async function capturePayPalOrder(orderId) {
-    const accessToken = await generatePayPalAccessToken();
-    const url = base + "/v2/checkout/orders/" + orderId + "/capture";
+async function capturePayPalOrder(orderId, payPalClientId, payPalClientSecret, payPalApiBase) {
+    const accessToken = await generatePayPalAccessToken(payPalClientId, payPalClientSecret, payPalApiBase);
+    const url = payPalApiBase + "/v2/checkout/orders/" + orderId + "/capture";
 
     const response = await fetch(url, {
         method: "POST",
@@ -35,6 +57,7 @@ async function capturePayPalOrder(orderId) {
 
     return await response.json();
 }
+
 export async function onRequest(context) {
     const {
         request,
@@ -57,7 +80,7 @@ export async function onRequest(context) {
     }
 
     // Capture the PayPal order
-    const payPalOrderResponse = await capturePayPalOrder(data.paypalOrderId);
+    const payPalOrderResponse = await capturePayPalOrder(data.paypalOrderId, env.PAYPAL_CLIENT_ID, env.PAYPAL_CLIENT_SECRET, env.PAYPAL_API_BASE);
 
     // @ts-ignore
     const status = payPalOrderResponse.status;
@@ -68,10 +91,19 @@ export async function onRequest(context) {
     }
 
     // Update the order in the database
-    const ps = context.env.BRANDWORX_DB.prepare('Update Orders SET status = ? WHERE paypal_order_id = ? RETURNING *');
+    const ps = env.BRANDWORX_DB.prepare('Update Orders SET status = ? WHERE paypal_order_id = ? RETURNING *');
     const dbResult = await ps.bind(status, data.paypalOrderId).first()
 
     if (dbResult) {
+        // Send a message to the Telegram group when the order status changes
+        const botToken = env.TELEGRAM_BOT_TOKEN;
+        const chatId = env.TELEGRAM_CHAT_ID;
+        // @ts-ignore
+        const message = `Order status changed: Order ID: ${dbResult.id}, PayPal Order ID: ${data.paypalOrderId}, Status: ${status}`;
+
+        // Use waitUntil to avoid blocking the main execution
+        waitUntil(sendTelegramMessage(botToken, chatId, message));
+
         return Response.json({orderId: dbResult.id, paypalOrderId: data.paypalOrderId, status: status});
     } else {
         return Response.json({error: 'Something went wrong'}, {status: 500});

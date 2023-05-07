@@ -1,22 +1,24 @@
+import {sendTelegramMessage} from "./capture-paypal-order";
+
 interface Env {
     BRANDWORX_DB: D1Database;
+    PAYPAL_CLIENT_ID: string;
+    PAYPAL_CLIENT_SECRET: string;
+    PAYPAL_API_BASE: string;
+    TELEGRAM_BOT_TOKEN: string;
+    TELEGRAM_CHAT_ID: string;
 }
 
-const base = "https://api-m.sandbox.paypal.com";
 
-
-const PayPalClientId = "AWULcyDAI-rJl4RtQiRGpS-df_fMhBoiWX9ZvIyXwH1iv2nyAecqpWwdDCfvPar2FweiAzHoApM02yPu";
-const PayPalClientSecret = "ECR_ofkNluBPg4_eH--jyWL-B7cNANaH_kpf1xhvlfgi8EScy8X5jK7vLm0OA18AgBuYuKkoeWXMftru";
-
-async function generatePayPalAccessToken() {
-    const url = base + "/v1/oauth2/token";
+async function generatePayPalAccessToken(payPalClientId, payPalClientSecret, payPalApiBase) {
+    const url = payPalApiBase + "/v1/oauth2/token";
 
     const response = await fetch(url, {
         method: "POST",
         body: "grant_type=client_credentials",
         headers: {
             "content-type": "application/x-www-form-urlencoded",
-            'Authorization': 'Basic ' + btoa(PayPalClientId + ':' + PayPalClientSecret),
+            'Authorization': 'Basic ' + btoa(payPalClientId + ':' + payPalClientSecret),
         }
     });
 
@@ -52,9 +54,9 @@ export async function onRequest(context) {
         total: data.total,
     };
 
-    const accessToken = await generatePayPalAccessToken();
+    const accessToken = await generatePayPalAccessToken(env.PAYPAL_CLIENT_ID, env.PAYPAL_CLIENT_SECRET, env.PAYPAL_API_BASE);
 
-    const paypalOrder = await createPayPalOrder(orderData, accessToken);
+    const paypalOrder = await createPayPalOrder(orderData, accessToken, env.PAYPAL_API_BASE);
 
     const servicesString = JSON.stringify(data.services);
 
@@ -67,12 +69,21 @@ export async function onRequest(context) {
         return Response.json({error: 'Something went wrong'}, {status: 500});
     }
 
+    // Send a message to the Telegram group when the order is created
+    const botToken = env.TELEGRAM_BOT_TOKEN;
+    const chatId = env.TELEGRAM_CHAT_ID;
+    // @ts-ignore
+    const message = `Order created: Order ID: ${order.id}, Name: ${data.name}, Email: ${data.email}, Total: ${data.total}, Status: ${paypalOrder.status}`;
+
+    // Use waitUntil to avoid blocking the main execution
+    context.waitUntil(sendTelegramMessage(botToken, chatId, message));
+
     return Response.json(paypalOrder, {status: 200});
 }
 
 
-async function createPayPalOrder(orderData, accessToken) {
-    const url = base + "/v2/checkout/orders";
+async function createPayPalOrder(orderData, accessToken, payPalApiBase) {
+    const url = payPalApiBase + "/v2/checkout/orders";
 
     const requestBody = {
         intent: "CAPTURE",
