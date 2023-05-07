@@ -19,7 +19,19 @@ const {title, description, keywords} = Astro.props;
     <meta name="generator" content={Astro.generator}/>
     <title>{title}</title>
 </head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WF22W21DFM"></script>
 <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-WF22W21DFM');
+</script>
+<script async>
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
