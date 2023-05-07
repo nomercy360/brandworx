@@ -1,9 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import ServiceList from '../../components/ServiceList.svelte';
+import GetStarted from "../../layouts/GetStarted.astro";
 ---
 
-<Layout
+<GetStarted
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
         keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
@@ -11,5 +11,5 @@ import ServiceList from '../../components/ServiceList.svelte';
     <main class="min-h-screen p-4 md:p-10">
         <ServiceList client:load/>
     </main>
-</Layout>
+</GetStarted>
 
