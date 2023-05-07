@@ -58,7 +58,6 @@
             price: 0,
             bgColor: 'bg-brown',
             icon: 'brackets',
-            time: 'Individual'
         },
         {
             id: 7,
@@ -345,6 +344,7 @@
                             on:toggleService={handleToggleService}
                             bgColor={service.bgColor}
                             icon={service.icon}
+                            time={service.time}
                     />
                 {/each}
             </div>
@@ -416,6 +416,7 @@
                             on:toggleService={handleToggleService}
                             bgColor={service.bgColor}
                             icon={service.icon}
+                            time={service.time}
                     />
                 </div>
             {/each}

@@ -8,6 +8,8 @@
     export let selected;
     export let icon;
 
+    export let time;
+
     export let bgColor;
 
     const dispatch = createEventDispatcher();
@@ -32,9 +34,14 @@
         </p>
     </div>
     <div class="flex flex-row items-center justify-between w-full md:mt-0 mt-6">
-        <p class="text-xl font-bold">
-            {price ? `$${price}` : 'Individual'}
-        </p>
+        <div>
+            <p class="text-xl font-bold">
+                {price ? `$${price}` : 'Individual'}
+            </p>
+            <p class="opacity-60">
+                {time ? time : ''}
+            </p>
+        </div>
         <div
                 class='bg-opacity-0 md:bg-opacity-10 bg-primary flex flex-row gap-9 rounded-lg px-3 py-3 justify-end items-center md:w-[220px] w-full'
         >
