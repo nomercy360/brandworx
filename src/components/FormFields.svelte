@@ -13,23 +13,34 @@
 
 <div class="w-full">
     <input type="text" placeholder="Name" id="name" class="input-item" bind:value={name} class:input-error={nameError}>
-    <label class="input-label" for="name">So we know how to call you</label>
-    {#if nameError}<p class="error-message">{nameError}</p>{/if}
+    {#if nameError}
+        <p class="error-message">{nameError}</p>
+    {:else}
+        <label class="input-label" for="name">So we know how to call you</label>
+    {/if}
 
     <input type="text" placeholder="Social link" id="social" class="input-item" bind:value={social}
            class:input-error={socialError}>
-    <label class="input-label" for="social">Telegram, WhatsApp, or Instagram, so we can dm you</label>
-    {#if socialError}<p class="error-message">{socialError}</p>{/if}
+    {#if socialError}
+        <p class="error-message">{socialError}</p>
+    {:else}
+        <label class="input-label" for="social">Telegram, WhatsApp, or Instagram, so we can dm you</label>
+    {/if}
 
     <input type="email" placeholder="E-mail" id="email" class="input-item" bind:value={email}
            class:input-error={emailError}>
-    <label class="input-label" for="email">So our work will be legit</label>
-    {#if emailError}<p class="error-message">{emailError}</p>{/if}
-
+    {#if emailError}
+        <p class="error-message">{emailError}</p>
+    {:else}
+        <label class="input-label" for="email">So our work will be legit</label>
+    {/if}
     <input type="text" placeholder="Time Zone" id="zone" class="input-item" bind:value={zone}
            class:input-error={zoneError}>
-    <label class="input-label" for="zone">So we don’t borrow you at night</label>
-    {#if zoneError}<p class="error-message">{zoneError}</p>{/if}
+    {#if zoneError}
+        <p class="error-message">{zoneError}</p>
+    {:else}
+        <label class="input-label" for="zone">So we don’t borrow you at night</label>
+    {/if}
 </div>
 
 <style>
