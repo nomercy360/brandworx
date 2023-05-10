@@ -61,7 +61,18 @@ const {title, description, keywords} = Astro.props;
         font-display: swap;
     }
 
+    @font-face {
+        font-family: 'JokerMan';
+        src: url('/fonts/Jokerman-Regular.woff2') format('woff2'),
+        url('/fonts/Jokerman-Regular.woff') format('woff'),
+        url('/fonts/Jokerman-Regular.ttf') format('truetype'),
+        url('/fonts/Jokerman-Regular.otf') format('opentype'),
+        url('/fonts/Jokerman-Regular.eot') format('embedded-opentype');
+        font-style: normal;
+        font-display: swap;
+    }
+
     .title-font {
-        font-family: 'PPEditorialNew', sans-serif;
+        font-family: 'JokerMan', sans-serif;
     }
 </style>
