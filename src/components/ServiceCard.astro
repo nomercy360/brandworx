@@ -20,22 +20,22 @@ const {
 } = Astro.props;
 ---
 <div class={`md:h-[640px] h-[380px] md:w-1/3 flex flex-col items-center justify-between ${bgColor} md:px-6 md:py-8 px-5 py-5 rounded-3xl`}>
-    <p class="md:text-5xl text-2xl md:w-2/3 text-center title-font">{title}</p>
+    <h3 class="md:text-subtitle text-subtitle-mobile md:w-2/3 text-center title-font md:leading-subtitle leading-subtitle-mobile">{title}</h3>
     <div class="flex flex-col items-center text-center">
         <div class="flex flex-row">
             <img src=`${imageLeft}.svg` alt="imageLeft" class=`md:h-[100px] h-[60px] md:w-[100px] w-[60px] -mr-3 border-2 rounded-full ${borderColor} z-10`>
             <img src=`${imageRight}.svg` alt="imageRight" class="md:h-[96px] h-[56px] md:w-[96px] w-[56px]">
         </div>
-        <p class="md:font-semibold md:text-xl mt-6">
+        <p class="font-medium md:text-xl mt-6 opacity-60">
             {description}
         </p>
     </div>
     <div class="flex flex-row justify-between items-center w-full">
         <div class="flex flex-col items-start">
-            <p class="md:text-xl text-xs">
+            <p class="md:text-s text-xs font-medium">
                 Starting
             </p>
-            <p class="text-3xl md:font-bold font-medium">
+            <p class="md:text-subtitle text-subtitle-mobile md:leading-subtitle leading-subtitle-mobile title-font">
                 {price}$
             </p>
         </div>

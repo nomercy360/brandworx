@@ -38,7 +38,25 @@ module.exports = {
             colors: {
                 'primary': '#000000',
                 'secondary': '#FFFFFF',
-            }
+            },
+            fontSize: {
+                'l': '24px',
+                'm': '20px',
+                's': '16px',
+                'title': '72px',
+                'title-mobile': '56px',
+                'subtitle': '40px',
+                'subtitle-mobile': '32px',
+            },
+            lineHeight: {
+                'l': '36px',
+                'm': '32px',
+                's': '24px',
+                'title': '80px',
+                'title-mobile': '64px',
+                'subtitle': '48px',
+                'subtitle-mobile': '36px',
+            },
         },
     },
     variants: {},

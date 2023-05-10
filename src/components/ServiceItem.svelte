@@ -21,7 +21,7 @@
 </script>
 
 <div
-        class={`flex flex-col items-center justify-between rounded-3xl w-full p-5 md:h-[280px] h-full ${selected ? bgColor : 'bg-neutral-200'}`}
+        class={`flex flex-col items-center justify-between rounded-3xl w-full p-5 md:h-[280px] cursor-pointer h-full ${selected ? bgColor : 'bg-neutral-200'}`}
         on:click={handleClick}
 >
     <div class="flex flex-col items-start">
