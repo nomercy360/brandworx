@@ -4,6 +4,7 @@ import Logo from '../components/Logo.astro';
 import QuizButton from '../components/QuizButton.svelte';
 import ServiceCard from '../components/ServiceCard.astro';
 import TextCard from "../components/TextCard.astro";
+import TextCardBox from "../components/TextCardBox.astro";
 import GetStartedButtons from "../components/GetStartedButtons.astro";
 
 const quizButtons = [
@@ -63,12 +64,11 @@ const quizButtons = [
                 <div class="hidden-custom md:block">
                     <Logo title="DisruptDesign"/>
                 </div>
-                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Drive growth and sales with
-                    design</p>
+                <p class="text-secondary md:text-7xl text-5xl md:mt-10 mt-6 title-font">Disrupt the market. Drive sales
+                    and growth with design.</p>
                 <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">
-                    We are helping growing startups and pivot companies to articulate values their values, and make
-                    communication effective
-                </p>
+                    We help growing startups and pivot companies to articulate their values and communicate
+                    effectively.</p>
                 <div class="flex flex-row gap-4">
                     <GetStartedButtons/>
                 </div>
@@ -80,8 +80,8 @@ const quizButtons = [
         <a href="/get-started" class="get-started-link">
             <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
                 <ServiceCard
-                        title="Catchy and recognisable brand identities"
-                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                        title="Boost your brand's awareness and credibility."
+                        description="We develop catchy and recognizable brands and logos that people understand, love, and share. This helps our clients gain the trust of their customers."
                         bgColor="bg-yellow"
                         price="200"
                         buttonText="Get Started"
@@ -96,8 +96,8 @@ const quizButtons = [
         <a href="/get-started" class="get-started-link">
             <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
                 <ServiceCard
-                        title="Effective advertising and visuals"
-                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                        title="Boost your ads and social media"
+                        description="We increase social media engagement and ad conversion by conducting research and experiments, and developing effective value propositions and visuals."
                         bgColor="bg-green"
                         price="200"
                         buttonText="Get Started"
@@ -112,8 +112,8 @@ const quizButtons = [
         <a href="/get-started" class="get-started-link">
             <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
                 <ServiceCard
-                        title="Pitch-decks and websites that sells"
-                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                        title="Get pitch deck and website that sells"
+                        description="We aid businesses in effectively communicating their product value, simplifying complexities, resolving issues, and building trust with their customers."
                         bgColor="bg-blue"
                         price="200"
                         buttonText="Get Started"
@@ -127,7 +127,7 @@ const quizButtons = [
         </a>
         <div class="flex md:flex-row items-start justify-center flex-col md:mt-0 mt-12 p-5 md:p-10 text-center w-full md:gap-12 md:pt-28">
             <div class="flex flex-col md:items-start items-center justify-start md:text-start text-center">
-                <h1 class="md:text-7xl text-5xl text-white mt-0">We are here for growth</h1>
+                <h1 class="md:text-7xl text-5xl text-white mt-0 title-font">We are here for growth</h1>
                 <p class="text-secondary opacity-40 md:text-2xl text-xl md:w-2/3 w-full mt-4 font-medium">
                     If you're launching or growing a product and are ready for experimentation and innovation, we're a
                     perfect match.
@@ -138,38 +138,41 @@ const quizButtons = [
             </div>
             <div class="flex flex-col md:gap-10 gap-12 mb-28">
                 <TextCard
-                        title="Save money and time while launching things"
+                        title="Save time and money when launching projects"
                         description="If you are planing to launch a new product, we’ll help you to conduct a researches and develop adjustable brand and communication that will allow you to test hypothesis quickly. save time and money."
                 />
                 <TextCard
-                        title="Improve existing product and communication"
-                        description="Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of the process for a flat fee in only two days."
+                        title="Improve the existing product and communication"
+                        description="We can help you achieve better advertising and communication results by providing advice and guidance on your current products, while staying true to your guidelines and vision."
                 />
                 <TextCard
                         title="Do the best while pivoting your product"
-                        description="Making the next step is hard. Especially it’s hard to make it right. We are helping brands abd companies get the best insights from their experience, and make the right decisions."
+                        description="Taking the next step is difficult, especially when it comes to making the right decision. Our goal is to assist brands and companies in gaining valuable insights from their experiences, and making informed decisions."
                 />
             </div>
-            <div class="flex md:flex-col md:gap-10 gap-12 mt-0 md:mb-28 order-first md:order-none md:ml-20 ml-0">
-                <TextCard
+            <div class="flex md:flex-col md:gap-10 gap-4 mt-0 md:mb-28 order-first md:order-none md:ml-20 ml-0">
+                <TextCardBox
                         title="10X"
                         rotate="rotate-[8.3deg]"
-                        description="is the average annual growth rate of the companies we work with."
+                        rotateMobile="rotate-[-6.28deg]"
+                        description="Average annual growth rate of companies we are working with"
                 />
-                <TextCard
+                <TextCardBox
                         title="2X"
-                        description="is the minimal conversion growth rate after our improvements."
+                        description="Minimal conversion growth-rate after our improvements"
                 />
-                <TextCard
+                <TextCardBox
                         title="50+"
                         rotate="rotate-[-9.24deg]"
-                        description="projects in the portfolio for the past 12 years."
+                        rotateMobile="rotate-[11.51deg]"
+                        description="Client projects in portfolio"
                 />
             </div>
         </div>
         <div class="flex md:flex-row flex-col md:gap-20 p-5 md:p-10 bg-opacity-10 bg-secondary">
             <div class="md:w-1/3 flex flex-col md:items-start items-center md:text-start text-center">
-                <p class="text-secondary md:text-5xl text-3xl font-bold md:mt-10 mt-6">Here is what you need to know</p>
+                <p class="text-secondary md:text-7xl text-5xl md:mt-10 mt-6 title-font">Here is what you need to
+                    know</p>
                 <p class="text-secondary md:text-3xl text-xl md:font-semibold md:mt-5 mt-4 opacity-40">
                     Over the past 12 years, we have completed more than 100 projects. Here are the most important things
                     you should know about working with us:

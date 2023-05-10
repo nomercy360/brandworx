@@ -2,13 +2,12 @@
 export interface Props {
     title: string;
     description: string;
-    rotate: string;
 }
 
-const {description, title, rotate} = Astro.props;
+const {description, title} = Astro.props;
 ---
 
-<div class=`flex flex-col md:text-start text-center transform ${rotate}`>
+<div class=`flex flex-col md:text-start text-center`>
     <h3 class="md:text-3xl text-xl text-secondary font-medium">
         {title}
     </h3>

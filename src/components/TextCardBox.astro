@@ -1,0 +1,26 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    rotate: string;
+    rotateMobile: string;
+    margin: string;
+}
+
+const {description, title, rotate, rotateMobile,margin} = Astro.props;
+---
+
+<div class=`flex flex-col md:text-start text-center transform md:${rotate} ${rotateMobile} card p-3 rounded-2xl md:mt-0 ${margin}`>
+    <h3 class="md:text-3xl text-xl text-secondary font-medium">
+        {title}
+    </h3>
+    <p class="md:text-base text-xs text-secondary font-medium mt-2 opacity-40">
+        {description}
+    </p>
+</div>
+
+<style>
+    .card {
+        background: rgba(255, 255, 255, 0.05);
+    }
+</style>
