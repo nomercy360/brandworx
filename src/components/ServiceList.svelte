@@ -12,7 +12,7 @@
             description: 'We always do our best, but we cannot guarantee results. However, we offer money-back guarantee if you are not satisfied with the aesthetics or metrics of the results. ',
             price: 150,
             bgColor: 'bg-yellow',
-            icon: 'letters',
+            icon: 'message',
             time: '3 days'
         },
         {
@@ -48,7 +48,7 @@
             description: 'A presentation of your product, business plan, and strategy that will be easily understandable for investors. Text for speech and interactive presentation with unlimited revisions.',
             price: 1900,
             bgColor: 'bg-blue',
-            icon: 'message',
+            icon: 'stack',
             time: '14 days'
         },
         {
@@ -64,8 +64,8 @@
             title: 'Advertising creatives',
             description: 'Multiple advertisements with a compelling value proposition and visuals to increase engagement and click-through rates. You will be able to test the results.',
             price: 550,
-            bgColor: 'bg-blue',
-            icon: 'google',
+            bgColor: 'bg-purple',
+            icon: 'ladder',
             time: '14 days'
         },
         {
@@ -74,7 +74,7 @@
             description: 'Data-based report and content plan to increase social media engagement and improve retention of ads. Everything in one document.',
             price: 700,
             icon: 'instagram',
-            bgColor: 'bg-purple',
+            bgColor: 'bg-pink',
             time: '5 days'
         }
     ];

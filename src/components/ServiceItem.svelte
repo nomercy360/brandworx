@@ -18,11 +18,17 @@
         selected = !selected;
         dispatch('toggleService', {id, price, selected});
     }
+
+    let color;
+
+    $: color = selected ? bgColor : 'bg-neutral-200';
 </script>
 
 <div
-        class={`flex flex-col items-center justify-between rounded-3xl w-full p-5 md:h-[280px] cursor-pointer h-full ${selected ? bgColor : 'bg-neutral-200'}`}
+        class={`flex flex-col items-center justify-between rounded-3xl w-full p-5 md:h-[280px] cursor-pointer h-full ${color} transition-all duration-300`}
         on:click={handleClick}
+        on:mouseenter={() => color = bgColor}
+        on:mouseleave={() => color = selected ? bgColor : 'bg-neutral-200'}
 >
     <div class="flex flex-col items-start">
         <img src={`/${icon}.svg`} alt="Logo" width="50" height="50"/>
@@ -43,10 +49,10 @@
             </p>
         </div>
         <div
-                class='bg-opacity-0 md:bg-opacity-10 bg-primary flex flex-row gap-9 rounded-lg px-3 py-3 justify-end items-center md:w-[220px] w-full'
+                class='bg-opacity-0 md:bg-opacity-10 bg-primary flex flex-row gap-9 md:gap-0 rounded-full px-3 py-3 justify-end items-center md:w-[180px] w-full'
         >
             {#if selected}
-                <span class="text-primary font-bold md:block hidden flex-grow whitespace-nowrap">Added to order</span>
+                <span class="text-primary font-bold md:block hidden flex-grow whitespace-nowrap">Added</span>
             {:else}
                 <span class="text-primary font-bold md:block hidden flex-grow whitespace-nowrap">Add to order</span>
             {/if}

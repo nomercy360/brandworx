@@ -5,16 +5,17 @@ export interface Props {
     rotate: string;
     rotateMobile: string;
     margin: string;
+    bgColor: string;
 }
 
-const {description, title, rotate, rotateMobile,margin} = Astro.props;
+const {description, title, rotate, rotateMobile,margin, bgColor} = Astro.props;
 ---
 
-<div class=`flex flex-col md:text-start text-center transform md:${rotate} ${rotateMobile} card p-3 rounded-2xl md:mt-0 ${margin}`>
-    <h3 class="md:text-3xl text-xl text-secondary font-medium">
+<div class=`flex flex-col md:text-start text-center transform md:${rotate} ${rotateMobile} card p-3 rounded-2xl md:mt-0 ${margin} ${bgColor}`>
+    <h3 class="md:text-3xl text-xl text-primary font-medium">
         {title}
     </h3>
-    <p class="md:text-base text-xs text-secondary font-medium mt-2 opacity-40">
+    <p class="md:text-base text-xs text-primary font-medium mt-2">
         {description}
     </p>
 </div>

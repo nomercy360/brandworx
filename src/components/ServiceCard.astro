@@ -1,7 +1,6 @@
 ---
 export interface Props {
     title: string;
-    bgColor: string;
     buttonText: string;
     imageLeft: string;
     imageRight: string;
@@ -19,11 +18,12 @@ const {
     borderColor
 } = Astro.props;
 ---
-<div class={`md:h-[640px] h-[380px] md:w-1/3 flex flex-col items-center justify-between ${bgColor} md:px-6 md:py-8 px-5 py-5 rounded-3xl`}>
+<div class={`md:h-[640px] h-[380px] md:w-1/3 flex flex-col items-center justify-between bg-secondary md:px-6 md:py-8 px-5 py-5 rounded-3xl`}>
     <h3 class="md:text-subtitle text-subtitle-mobile md:w-2/3 text-center title-font md:leading-subtitle leading-subtitle-mobile">{title}</h3>
     <div class="flex flex-col items-center text-center">
         <div class="flex flex-row">
-            <img src=`${imageLeft}.svg` alt="imageLeft" class=`md:h-[100px] h-[60px] md:w-[100px] w-[60px] -mr-3 border-2 rounded-full ${borderColor} z-10`>
+            <img src=`${imageLeft}.svg` alt="imageLeft"
+                 class=`md:h-[100px] h-[60px] md:w-[100px] w-[60px] -mr-3 border-2 rounded-full border-white z-10`>
             <img src=`${imageRight}.svg` alt="imageRight" class="md:h-[96px] h-[56px] md:w-[96px] w-[56px]">
         </div>
         <p class="font-medium md:text-xl mt-6 opacity-60">
@@ -39,7 +39,7 @@ const {
                 {price}$
             </p>
         </div>
-        <button class="rounded-lg px-3 py-2.5 text-primary font-semibold bg-opacity-10 bg-primary">
+        <button class="rounded-full md:px-5 md:py-4 px-3 py-2.5 text-primary font-semibold bg-opacity-5 bg-primary">
             {buttonText}
         </button>
     </div>
