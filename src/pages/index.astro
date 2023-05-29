@@ -35,6 +35,21 @@ const quizButtons = [
     const layout = new Layout({
         fit: Fit.Cover
     })
+
+    // @ts-ignore
+    const canvas1 = document.getElementById("canvas1");
+
+    const r = new Rive({
+        src: "https://public.rive.app/hosted/185110/61368/uTV8xlc3xku3Gzd7JO34pQ.riv",
+        canvas: canvas1,
+        layout: layout,
+        autoplay: true,
+        animations: "State Machine 1",
+        onLoad: () => {
+            r.resizeDrawingSurfaceToCanvas();
+        },
+    } as any);
+
 </script>
 <Layout
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
@@ -85,8 +100,8 @@ const quizButtons = [
                         imageLeft="a-letter"
                         imageRight="eye"
                 />
-                <div class="bg-whispering-breeze md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl">
-                </div>
+                <canvas id="canvas1"
+                        class="bg-transparent md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl"/>
             </div>
         </a>
         <a href="/get-started" class="get-started-link">
