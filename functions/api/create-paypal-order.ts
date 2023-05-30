@@ -73,7 +73,7 @@ export async function onRequest(context) {
     const botToken = env.TELEGRAM_BOT_TOKEN;
     const chatId = env.TELEGRAM_CHAT_ID;
     // @ts-ignore
-    const message = `Order created: Order ID: ${order.id}, Name: ${data.name}, Email: ${data.email}, Total: ${data.total}, Status: ${paypalOrder.status}`;
+    const message = `*Order created*\n\n*Order ID:* ${order.id}\n*Name:* ${data.name}\n*Email: ${data.email}\n*Total:* ${data.total}\n*Status:* ${paypalOrder.status}`;
 
     // Use waitUntil to avoid blocking the main execution
     context.waitUntil(sendTelegramMessage(botToken, chatId, message));

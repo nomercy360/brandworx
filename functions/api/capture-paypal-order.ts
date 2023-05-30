@@ -17,7 +17,8 @@ export async function sendTelegramMessage(botToken, chatId, message) {
         },
         body: JSON.stringify({
             chat_id: chatId,
-            text: message
+            text: message,
+            parse_mode: "Markdown",
         })
     });
 
@@ -99,7 +100,7 @@ export async function onRequest(context) {
         const botToken = env.TELEGRAM_BOT_TOKEN;
         const chatId = env.TELEGRAM_CHAT_ID;
         // @ts-ignore
-        const message = `Order status changed: Order ID: ${dbResult.id}, PayPal Order ID: ${data.paypalOrderId}, Status: ${status}`;
+        const message = `*Order status changed*\n\n*Order ID:* ${dbResult.id}\n*PayPal Order ID:* ${data.paypalOrderId}\n*Status:* ${status}`;
 
         // Use waitUntil to avoid blocking the main execution
         waitUntil(sendTelegramMessage(botToken, chatId, message));
