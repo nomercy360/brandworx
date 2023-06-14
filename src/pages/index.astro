@@ -32,39 +32,95 @@ const quizButtons = [
 <script>
     import {Rive, Layout, Fit} from "@rive-app/canvas";
 
-    const layout = new Layout({fit: Fit.Cover});
+    function loadRiveLoader(canvasId, src) {
+        const layout = new Layout({fit: Fit.Cover});
+        const canvas = document.getElementById(canvasId);
 
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Trigger the animation here
-                const r = new Rive({
-                    src: entry.target.dataset.src, // Store the src in data-src attribute of the canvas
-                    canvas: entry.target,
-                    layout: layout,
-                    autoplay: true,
-                    animations: "State Machine 1",
-                    onLoad: () => {
-                        r.resizeDrawingSurfaceToCanvas();
-                    },
-                } as any);
-
-                observer.unobserve(entry.target);
+        const r = new Rive({
+            src: src,
+            canvas: canvas,
+            layout: layout,
+            autoplay: true, // Set autoplay to true so that the loader starts immediately
+            onLoad: () => {
+                r.resizeDrawingSurfaceToCanvas();
             }
         });
-    });
+    }
 
-    // Select all canvases and observe them
-    const canvases = document.querySelectorAll('canvas');
-    canvases.forEach(canvas => observer.observe(canvas));
+    document.addEventListener("DOMContentLoaded", function () {
+        loadRiveLoader("loader-canvas", "https://public.rive.app/hosted/185110/67279/Jtn1FdqAb0ijb-bXOIOaeA.riv");
+    })
+
+    function loadRiveAnimation(canvasId, src) {
+        return new Promise((resolve, reject) => {
+            const layout = new Layout({fit: Fit.Cover});
+            const canvas = document.getElementById(canvasId);
+
+            const r = new Rive({
+                // Hosted .riv asset, or a local one.
+                src: src,
+                canvas: canvas,
+                layout: layout,
+                stateMachines: "State Machine 1",
+                // Set it to false so the state machine doesn't play automatically when its ready
+                autoplay: false,
+                onLoad: () => {
+                    r.resizeDrawingSurfaceToCanvas();
+
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                r.play("State Machine 1");
+                            } else {
+                                r.pause("State Machine 1");
+                            }
+                        });
+                    });
+
+                    observer.observe(canvas);
+
+                    // Resolve the promise when the Rive animation has loaded
+                    resolve();
+                }
+            });
+        });
+    }
+
+    async function loadAnimations() {
+        try {
+            await Promise.all([
+                loadRiveAnimation("canvas1", "https://public.rive.app/hosted/185110/65338/AxmeachkakmVG9wZy4u9QQ.riv"),
+                loadRiveAnimation("canvas2", "https://public.rive.app/hosted/185110/66048/bwzxJDlCq0GNw_enT0LYNw.riv"),
+                loadRiveAnimation("canvas3", "https://public.rive.app/hosted/185110/66090/jw6XRQVVy06sUvcRnVUDMw.riv")
+            ]);
+
+            // Hide the loading indicator
+            document.getElementById('loader-overlay').style.display = 'none';
+        } catch (error) {
+            console.error("Failed to load Rive animation:", error);
+        }
+    }
+
+    loadAnimations();
 
 
 </script>
+
+<style>
+    canvas {
+        aspect-ratio: 1148 / 834;
+    }
+</style>
+
 <Layout
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
         keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
 >
+    <div id="loader-overlay"
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; align-items: center; justify-content: center; z-index: 999;">
+        <canvas id="loader-canvas" class="bg-transparent w-60 h-60"></canvas>
+    </div>
     <main class="bg-primary">
         <div class="p-5 md:p-10">
             <p class="text-secondary md:text-title text-title-mobile title-font md:leading-title leading-title-mobile">
