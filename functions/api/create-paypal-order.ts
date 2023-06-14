@@ -108,7 +108,7 @@ async function createPayPalOrder(orderData, accessToken, payPalApiBase) {
     });
 
     if (!response.ok) {
-        throw new Error("Failed to create PayPal order");
+        throw new Error("Failed to create PayPal order: " + JSON.stringify(response));
     }
 
     return await response.json();
