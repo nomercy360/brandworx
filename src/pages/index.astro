@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import QuizButton from '../components/QuizButton.svelte';
 import ServiceCard from '../components/ServiceCard.astro';
+import HeaderText from '../components/HeaderText.astro';
+import Footer from '../components/Footer.astro';
 import TextCard from "../components/TextCard.astro";
 import TextCardBox from "../components/TextCardBox.astro";
 import GetStartedButtons from "../components/GetStartedButtons.astro";
@@ -47,11 +49,8 @@ const quizButtons = [
         });
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        loadRiveLoader("loader-canvas", "https://public.rive.app/hosted/185110/67279/Jtn1FdqAb0ijb-bXOIOaeA.riv");
-    })
-
     function loadRiveAnimation(canvasId, src) {
+        loadRiveLoader("loader-canvas", "https://public.rive.app/hosted/185110/67279/Jtn1FdqAb0ijb-bXOIOaeA.riv")
         return new Promise((resolve, reject) => {
             const layout = new Layout({fit: Fit.Cover});
             const canvas = document.getElementById(canvasId);
@@ -102,15 +101,7 @@ const quizButtons = [
     }
 
     loadAnimations();
-
-
 </script>
-
-<style>
-    canvas {
-        aspect-ratio: 1148 / 834;
-    }
-</style>
 
 <Layout
         title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
@@ -123,34 +114,7 @@ const quizButtons = [
     </div>
     <main class="bg-primary">
         <div class="p-5 md:p-10">
-            <p class="text-secondary md:text-title text-title-mobile title-font md:leading-title leading-title-mobile">
-                We help startups drive
-                <span>
-                    <img src="/stairs.svg" alt="stairs" class="inline-block md:w-[48px] md:h-[48px] w-[24px] h-[24px]">
-                </span>
-                growth through design: increase brand
-                <span>
-                    <img src="/chat.svg" alt="chat" class="inline-block md:w-[58px] md:h-[50px] w-[30px] h-[26px]">
-                </span>
-                awareness, ads
-                <span>
-                    <img src="/mithosis.svg" alt="mithosis"
-                         class="inline-block md:w-[85px] md:h-[48px] w-[42px] h-[24px]">
-                </span>
-                conversion, website
-                <span>
-                    <img src="/star.svg" alt="star" class="inline-block md:w-[69px] md:h-[69px] w-[30px] h-[30px]">
-                </span>
-                sales, and
-                <span>
-                    <img src="/hope.svg" alt="star" class="inline-block md:w-[48px] md:h-[48px] w-[24px] h-[24px]">
-                </span>
-                inspire investors to back them after seeing a great
-                <span>
-                    <img src="/union.svg" alt="star" class="inline-block md:w-[56px] md:h-[48px] w-[28px] h-[24px]">
-                </span>
-                pitch-deck.
-            </p>
+            <HeaderText/>
             <div class="flex flex-row items-start justify-start gap-5 md:mt-10 mt-8">
                 <GetStartedButtons/>
             </div>
@@ -265,18 +229,7 @@ const quizButtons = [
                 )}
             </div>
         </div>
-        <div class="flex flex-row md:items-center items-start justify-between w-full md:px-10 px-5 md:pb-10 pb-5 md:pt-32 pt-16 bg-opacity-10 bg-secondary">
-            <div class="flex md:flex-row flex-col md:gap-5 items-start gap-2">
-                <button class="md:text-xl text-secondary hover:underline md:py-4">Terms of Service</button>
-                <a class="md:text-xl text-secondary hover:underline md:py-4" href="https://t.me/nickaxel"
-                   target="_blank">
-                    Contact Us
-                </a>
-            </div>
-            <a class="md:text-xl text-secondary hover:underline md:py-4" href="https://thegaas.co" target="_blank">
-                Made by GAAS
-            </a>
-        </div>
+        <Footer/>
     </main>
 </Layout>
 
