@@ -189,9 +189,7 @@
         if (!paypalButtonRendered && totalPriceDiscounted > 0) {
             paypal.Buttons({
                 onClick: function (data, actions) {
-                    const isVerified = validateForm();
-                    console.log(isVerified);
-                    return isVerified;
+                    return validateForm();
                 },
                 createOrder: async function (data, actions) {
                     return await createDbOrder();
