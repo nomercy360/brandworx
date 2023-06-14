@@ -31,13 +31,14 @@ const {title, description, keywords} = Astro.props;
 
     gtag('config', 'G-WF22W21DFM');
 </script>
+
 <script async>
     (function (d, s, id) {
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s);
         js.id = id;
-        js.src = 'https://www.paypal.com/sdk/js?client-id=AWULcyDAI-rJl4RtQiRGpS-df_fMhBoiWX9ZvIyXwH1iv2nyAecqpWwdDCfvPar2FweiAzHoApM02yPu';
+        js.src = 'https://www.paypal.com/sdk/js?client-id=' + process.env.PAYPAL_CLIENT_ID + '&currency=USD';
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'paypal-js'));
 </script>
