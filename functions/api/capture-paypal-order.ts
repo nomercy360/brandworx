@@ -125,7 +125,8 @@ export async function onRequest(context) {
 }
 
 const formatPrice = (price) => {
-    return `"$ "${(price / 100).toFixed(2)}`
+    // 1000 -> $ 1000.00
+    return `$ ${price.toFixed(2)}`;
 }
 
 async function sendEmailOrderConfirmation(address, services, billingAddress, totalPrice) {

@@ -212,7 +212,7 @@ func getEmailBody(data EmailData) (string, error) {
 				</td>
 				<td style="text-align: right; width: 50%;">
 					<h4 style="color:#ffffff; font-size:16px; font-weight:bold; padding:0; margin: 20px 0 0; line-height: 36px">
-						$2450
+						{{ .TotalPrice }}
 					</h4>
 				</td>
 			</tr>
