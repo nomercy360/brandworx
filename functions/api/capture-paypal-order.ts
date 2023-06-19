@@ -105,8 +105,45 @@ export async function onRequest(context) {
         // Use waitUntil to avoid blocking the main execution
         waitUntil(sendTelegramMessage(botToken, chatId, message));
 
+        // Email the customer
+        const services = JSON.parse(dbResult.services);
+
+        const servicesForEmail = services.map(service => {
+            return {
+                name: service.title,
+                price: service.price,
+                quantity: 1,
+            }
+        })
+
+        waitUntil(sendEmailOrderConfirmation(dbResult.email, servicesForEmail, 'Some address', dbResult.total));
+
         return Response.json({orderId: dbResult.id, paypalOrderId: data.paypalOrderId, status: status});
     } else {
         return Response.json({error: 'Something went wrong'}, {status: 500});
     }
 }
+
+async function sendEmailOrderConfirmation(address, services, billingAddress, totalPrice) {
+    const data = {
+        to: address,
+        subject: "Order Confirmation",
+        data: {
+            totalPrice: totalPrice,
+            services: services,
+            billingAddress: billingAddress,
+        }
+    }
+
+    const lambdaUrl = "https://tyc2u7lzldapvoqg7rg2irkuae0jbfjd.lambda-url.eu-central-1.on.aws";
+
+    const res = await fetch(lambdaUrl, {
+        method: 'POST',
+        body: JSON.stringify(data),
+    })
+
+    if (res.status !== 200) {
+        throw new Error("Error sending email");
+    }
+}
+
