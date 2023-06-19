@@ -15,7 +15,7 @@ import (
 
 type EmailData struct {
 	ServiceCount   int       `json:"-"`
-	TotalPrice     string    `json:"totalPrice"`
+	TotalPrice     int       `json:"totalPrice"`
 	Services       []Service `json:"services"`
 	BillingAddress string    `json:"billingAddress"`
 }
@@ -45,7 +45,7 @@ func validateRequest(emailRequest *EmailRequest) error {
 		return fmt.Errorf("to and subject are required")
 	}
 
-	if emailRequest.Data.TotalPrice == "" || len(emailRequest.Data.Services) == 0 || emailRequest.Data.BillingAddress == "" {
+	if emailRequest.Data.TotalPrice == 0 || len(emailRequest.Data.Services) == 0 || emailRequest.Data.BillingAddress == "" {
 		return fmt.Errorf("data is invalid")
 	}
 
