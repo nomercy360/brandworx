@@ -125,15 +125,11 @@ export async function onRequest(context) {
 }
 
 async function sendEmailOrderConfirmation(address, services, billingAddress, totalPrice) {
-    if (typeof totalPrice !== "number") {
-        totalPrice = parseInt(totalPrice);
-    }
-
     const data = {
         to: address,
         subject: "Order Confirmation",
         data: {
-            totalPrice: totalPrice,
+            totalPrice: String(totalPrice),
             services: services,
             billingAddress: billingAddress,
         }
