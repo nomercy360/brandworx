@@ -111,7 +111,7 @@ export async function onRequest(context) {
         const servicesForEmail = services.map(service => {
             return {
                 name: service.title,
-                price: service.price,
+                price: formatPrice(service.price),
                 quantity: 1,
             }
         })
@@ -124,12 +124,16 @@ export async function onRequest(context) {
     }
 }
 
+const formatPrice = (price) => {
+    return `"$ "${(price / 100).toFixed(2)}`
+}
+
 async function sendEmailOrderConfirmation(address, services, billingAddress, totalPrice) {
     const data = {
         to: address,
         subject: "Order Confirmation",
         data: {
-            totalPrice: String(totalPrice),
+            totalPrice: formatPrice(totalPrice),
             services: services,
             billingAddress: billingAddress,
         }
