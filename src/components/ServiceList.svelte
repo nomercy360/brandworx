@@ -3,8 +3,6 @@
     import ServiceItem from './ServiceItem.svelte';
     import FormFields from "./FormFields.svelte";
     import CheckoutFields from "./CheckoutFields.svelte";
-    import ContactUsButton from "./ContactUsButton.svelte";
-    import PayPalButton from "./PayPalButton.svelte";
 
     const services = [
         {
@@ -13,7 +11,7 @@
             description: 'We always do our best, but we cannot guarantee results. However, we offer money-back guarantee if you are not satisfied with the aesthetics or metrics of the results. ',
             price: 150,
             bgColor: 'bg-yellow',
-            icon: 'message',
+            icon: 'message.svg',
             time: '3 days'
         },
         {
@@ -22,7 +20,7 @@
             description: 'A memorable and catchy handcrafted logo, complete with a basic brand book, typography, and color scheme. One variant with unlimited revisions.',
             price: 450,
             bgColor: 'bg-green',
-            icon: 'a-letter',
+            icon: 'a-letter.svg',
             time: '3 days'
         },
         {
@@ -31,7 +29,7 @@
             description: 'Logotypes, typography, colors, and illustrations, placed in selected locations, such as ad creatives, business cards, cars, or posters.',
             price: 1100,
             bgColor: 'bg-brown',
-            icon: 'eye',
+            icon: 'eye.svg',
             time: '14 days'
         },
         {
@@ -40,7 +38,7 @@
             description: 'Single-page website that is visually appealing, easy to understand, and encourages engagement and conversion. Figma file, Illustrations are included.',
             price: 1900,
             bgColor: 'bg-light-red',
-            icon: 'click',
+            icon: 'click.svg',
             time: '14 days'
         },
         {
@@ -49,7 +47,7 @@
             description: 'A presentation of your product, business plan, and strategy that will be easily understandable for investors. Text for speech and interactive presentation with unlimited revisions.',
             price: 1900,
             bgColor: 'bg-blue',
-            icon: 'stack',
+            icon: 'stack.svg',
             time: '14 days'
         },
         {
@@ -58,7 +56,7 @@
             description: 'If you need to develop a website, or app, just let us know. We are working both with web and mobile development.',
             price: 0,
             bgColor: 'bg-brown',
-            icon: 'brackets',
+            icon: 'brackets.svg',
         },
         {
             id: 7,
@@ -66,7 +64,7 @@
             description: 'Multiple advertisements with a compelling value proposition and visuals to increase engagement and click-through rates. You will be able to test the results.',
             price: 550,
             bgColor: 'bg-purple',
-            icon: 'ladder',
+            icon: 'ladder.svg',
             time: '14 days'
         },
         {
@@ -74,7 +72,7 @@
             title: 'Media Plan',
             description: 'Data-based report and content plan to increase social media engagement and improve retention of ads. Everything in one document.',
             price: 700,
-            icon: 'instagram',
+            icon: 'instagram.png',
             bgColor: 'bg-pink',
             time: '5 days'
         }
@@ -306,7 +304,12 @@
 
     const justCreateOrder = async () => {
         if (validateForm()) {
-            await createDbOrder();
+            try {
+                await createDbOrder();
+                window.location.href = "/order-success";
+            } catch (error) {
+                window.location.href = "/order-failed";
+            }
         }
     }
 

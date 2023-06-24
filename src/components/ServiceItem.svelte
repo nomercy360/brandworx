@@ -31,7 +31,7 @@
         on:mouseleave={() => color = selected ? bgColor : 'bg-neutral-200'}
 >
     <div class="flex flex-col items-start">
-        <img src={`/${icon}.svg`} alt="Logo" width="50" height="50"/>
+        <img src={`/${icon}`} alt="Logo" width="50" height="50"/>
         <p class="md:text-xl text-base font-bold mb-1 md:mt-0 mt-3">
             {title}
         </p>
