@@ -35,6 +35,7 @@ const quizButtons = [
     import {Rive, Layout, Fit} from "@rive-app/canvas";
 
     function loadRiveLoader(canvasId, src) {
+        document.querySelector('body').style.overflow = 'hidden';
         const layout = new Layout({fit: Fit.Cover});
         const canvas = document.getElementById(canvasId);
 
@@ -95,6 +96,7 @@ const quizButtons = [
 
             // Hide the loading indicator
             document.getElementById('loader-overlay').style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
         } catch (error) {
             console.error("Failed to load Rive animation:", error);
         }
@@ -195,19 +197,19 @@ const quizButtons = [
                         rotate="rotate-[8.3deg]"
                         rotateMobile="rotate-[-6.28deg]"
                         description="Average annual growth rate of companies we are working with"
-                        bgColor="bg-light-orange"
+                        bgColor="bg-[#FBA271]"
                 />
                 <TextCardBox
                         title="2X"
                         description="Minimal conversion growth-rate after our improvements"
-                        bgColor="bg-brown"
+                        bgColor="bg-[#EAFC82]"
                 />
                 <TextCardBox
                         title="50+"
                         rotate="rotate-[-9.24deg]"
                         rotateMobile="rotate-[11.51deg]"
                         description="Client projects in portfolio"
-                        bgColor="bg-purple"
+                        bgColor="bg-[#A9ADFB]"
                 />
             </div>
         </div>

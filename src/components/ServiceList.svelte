@@ -1,9 +1,10 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
+    import {createEventDispatcher, onMount} from 'svelte';
     import ServiceItem from './ServiceItem.svelte';
     import FormFields from "./FormFields.svelte";
     import CheckoutFields from "./CheckoutFields.svelte";
     import ContactUsButton from "./ContactUsButton.svelte";
+    import PayPalButton from "./PayPalButton.svelte";
 
     const services = [
         {
@@ -113,7 +114,6 @@
         let discountedPrice = totalPrice * (1 - promoCodeDiscount / 100);
         let commission = discountedPrice * (commissionPercentage / 100);
         totalPriceDiscounted = discountedPrice + commission;
-        renderPaypalButtons();
     }
 
     $: if (promoCodeDiscount > 0) {
@@ -141,11 +141,6 @@
             }
 
             currentScreen++;
-
-            // If on the third screen, render PayPal buttons
-            if (currentScreen === 2) {
-                renderPaypalButtons(true);
-            }
         }
     }
 
@@ -160,7 +155,7 @@
         }
     }
 
-    let paypalButtonRendered = false;
+    let paypalButtonsShown = false;
 
     let formIsValid = false;
 
@@ -169,51 +164,52 @@
     }
 
     function renderPaypalButtons(mobile = false) {
-        let paypalButtonsContainer;
-        if (mobile) {
-            paypalButtonsContainer = document.querySelector("#paypal-buttons-mobile");
-        } else {
-            paypalButtonsContainer = document.querySelector("#paypal-buttons");
-        }
+        window.document.querySelector("#paypal-button-container").style.display = "none";
+        window.document.querySelector("#paypal-button-container-mobile").style.display = "none";
+        paypal.Buttons({
+            onClick: function (data, actions) {
 
-        if (!mobile && window.innerWidth < 768) {
+            },
+            createOrder: async function (data, actions) {
+                return await createDbOrder();
+            },
+            onApprove: async function (data, actions) {
+                const result = await captureOrder(data.orderID);
+                if (result.status === "COMPLETED") {
+                    window.location.href = "/order-success";
+                } else {
+                    window.location.href = "/order-failed";
+                }
+            },
+            style: {
+                color: 'black', // or 'gold', 'blue', 'silver', 'white', 'black'
+                shape: 'rect', // or 'pill'
+                layout: 'vertical', // or 'horizontal'
+                label: 'checkout', // or 'buynow', 'pay', 'installment'
+                size: 'responsive', // or 'small', 'medium', 'large'
+                height: 48, // Optional, specify the height of the button
+            },
+        }).render(`#paypal-button-container${mobile ? "-mobile" : ""}`);
+    }
+
+    function showPaypalButtons() {
+        if (!validateForm()) {
             return;
         }
 
-        if (totalPriceDiscounted > 0) {
-            paypalButtonsContainer.style.display = "block";
+        if (paypalButtonsShown) {
+            return;
+        }
+
+        let paypalButtonsContainer;
+        if (window.innerWidth < 1280) {
+            paypalButtonsContainer = document.querySelector("#paypal-button-container-mobile");
         } else {
-            paypalButtonsContainer.style.display = "none";
+            paypalButtonsContainer = document.querySelector("#paypal-button-container");
         }
 
-        if (!paypalButtonRendered && totalPriceDiscounted > 0) {
-            paypal.Buttons({
-                onClick: function (data, actions) {
-                    return validateForm();
-                },
-                createOrder: async function (data, actions) {
-                    return await createDbOrder();
-                },
-                onApprove: async function (data, actions) {
-                    const result = await captureOrder(data.orderID);
-                    if (result.status === "COMPLETED") {
-                        window.location.href = "/order-success";
-                    } else {
-                        window.location.href = "/order-failed";
-                    }
-                },
-                style: {
-                    color: 'black', // or 'gold', 'blue', 'silver', 'white', 'black'
-                    shape: 'rect', // or 'pill'
-                    layout: 'vertical', // or 'horizontal'
-                    label: 'checkout', // or 'buynow', 'pay', 'installment'
-                    size: 'responsive', // or 'small', 'medium', 'large'
-                    height: 48, // Optional, specify the height of the button
-                },
-            }).render(`#paypal-buttons${mobile ? '-mobile' : ''}`); // Renders the PayPal button
-
-            paypalButtonRendered = true;
-        }
+        paypalButtonsContainer.style.display = "block";
+        paypalButtonsShown = true;
     }
 
     async function captureOrder(orderID) {
@@ -307,6 +303,22 @@
     } else if (currentScreen === 0) {
         nextScreenButtonDisabled = selectedServices.size === 0;
     }
+
+    const justCreateOrder = async () => {
+        if (validateForm()) {
+            await createDbOrder();
+        }
+    }
+
+    onMount(() => {
+        if (window.innerWidth < 1280) {
+            renderPaypalButtons(true);
+        } else {
+            renderPaypalButtons(false);
+        }
+    });
+
+
 </script>
 
 <div class="mobile mx-auto">
@@ -367,10 +379,9 @@
                     commissionPercentage={commissionPercentage}
                     bind:promoCodeDiscount={promoCodeDiscount}
             />
-
         {/if}
         <div class="fixed bottom-0 left-0 w-full right-0 px-4 py-5 bg-secondary">
-            <div id="paypal-buttons-mobile"></div>
+            <div id="paypal-button-container-mobile"></div>
             {#if currentScreen === 0}
                 <button class="w-full bg-primary text-white font-bold text-xl py-3 rounded-lg next-button"
                         on:click={goToNextScreen} class:disable="{nextScreenButtonDisabled}">
@@ -388,7 +399,19 @@
                 <p class="opacity-60 mb-3 font-medium text-lg text-center">
                     If you prefer WireTransfer, Deel, or Cryptocurrency, just contact us.
                 </p>
-                <ContactUsButton marginBottom={20}/>
+                <button class="w-full bg-light-gray-2 py-4 font-bold text-lg rounded-xl flex flex-row items-center justify-center mb-5"
+                        on:click={justCreateOrder}>
+                    Order now, pay later
+                </button>
+                {#if !paypalButtonsShown}
+                    <button class="px-4 w-full bg-black text-secondary py-4 font-bold text-lg rounded-xl flex flex-row items-center justify-between"
+                            on:click={showPaypalButtons}>
+                        {#if totalPriceDiscounted.toFixed(2) > 0}
+                            <span>{totalPriceDiscounted.toFixed(2)}$</span>
+                        {/if}
+                        <span>Pay with PayPal</span>
+                    </button>
+                {/if}
             {/if}
         </div>
     </div>
@@ -420,7 +443,7 @@
             {/each}
         </div>
     </div>
-    <div class="">
+    <div>
         <p class="text-3xl font-bold">
             Provide contacts
         </p>
@@ -455,8 +478,20 @@
         <p class="opacity-40 font-medium mt-6 mb-7">
             By taping checkout button, you agree to the Terms of Service & Privacy Policy
         </p>
-        <ContactUsButton marginBottom={14}/>
-        <div id="paypal-buttons"></div>
+        <button class="w-full bg-light-gray-2 py-4 font-bold text-lg rounded-xl flex flex-row items-center justify-center mb-3.5"
+                on:click={justCreateOrder}>
+            Order now, pay later
+        </button>
+        <div id="paypal-button-container"></div>
+        {#if !paypalButtonsShown}
+            <button class="px-4 w-full bg-black text-secondary py-4 font-bold text-lg rounded-xl flex flex-row items-center justify-between"
+                    on:click={showPaypalButtons}>
+                {#if totalPriceDiscounted.toFixed(2) > 0}
+                    <span>{totalPriceDiscounted.toFixed(2)}$</span>
+                {/if}
+                <span>Pay with PayPal</span>
+            </button>
+        {/if}
     </div>
 </div>
 
@@ -466,7 +501,7 @@
         display: none;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1280px) {
         .mobile {
             visibility: visible;
             display: block;
@@ -476,10 +511,6 @@
             visibility: hidden;
             display: none;
         }
-    }
-
-    #paypal-buttons, #paypal-buttons-mobile {
-        display: none;
     }
 
     .next-button.disable {

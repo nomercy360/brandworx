@@ -1,6 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import LogoBlack from "../../components/LogoBlack.astro";
 ---
 
 <Layout
@@ -8,13 +7,29 @@ import LogoBlack from "../../components/LogoBlack.astro";
         description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
         keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
 >
-    <main class="min-h-screen p-6 md:p-10 flex flex-col items-center justify-start gap-4 md:gap-6">
-        <LogoBlack/>
-        <h1 class="text-3xl md:text-4xl font-bold text-center mt-2 md:mt-4">Something went wrong. We didn't expect this
-            to happen.</h1>
-        <p class="text-center">Please,
-            <a href="/contact" class="text-blue-500 hover:underline">contact us</a> and we'll fix it as soon as possible.</p>
-        <p class="text-center mt-4 opacity-40">Money-back guarantee.</p>
+    <main class="h-screen p-6 md:p-10 flex flex-col items-center justify-center">
+        <div class="flex flex-col md:justify-center justify-between items-center">
+            <div>
+                <h1 class="text-[40px] text-white leading-[48px] md:text-[72px] md:leading-[88px] text-center mt-2 md:mt-4 title-font">
+                    Something went wrong. We didn't expect this to happen.
+                </h1>
+                <p class="md:text-xl text-center text-neutral-500 md:mt-5 mt-4">Please,
+                    <a href="tg://resolve?domain=nickaxel" class="text-blue-500 hover:underline">contact us</a>
+                    and we'll fix it as soon as possible.
+                </p>
+            </div>
+            <a class="bg-neutral-800 mt-24 md:mt-10 text-white px-6 py-3 rounded-full font-bold hover:bg-neutral-700 transition duration-200 ease-in-out"
+               href="/">
+                Come back
+            </a>
+        </div>
     </main>
 </Layout>
+
+<style>
+    body {
+        background-color: #000000;
+    }
+</style>
+
 
