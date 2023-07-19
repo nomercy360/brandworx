@@ -246,9 +246,6 @@ func getEmailBody(data EmailData) (string, error) {
 			</tr>
 			{{end}}
 		</table>
-		<p style="color:#ffffff; font-size:16px; font-weight:normal; padding:0; margin: 16px 0 0; line-height: 36px">
-			Billing address: {{.BillingAddress}}
-		</p>
 		<div style="width: 100%; height: 200px;"></div>
 		<img src="https://d262mborv4z66f.cloudfront.net/heart.png" width="28" height="24" alt="disrapt"
 			 style="display:block; border:0; margin:0; padding:0;"/>
