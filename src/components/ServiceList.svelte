@@ -191,14 +191,11 @@
     }
 
     async function showPaypalButtons() {
-        console.log("showPaypalButtons")
         if (!validateForm()) {
-            console.log("validateForm failed")
             return;
         }
 
         if (paypalButtonsShown) {
-            console.log("paypalButtonsShown")
             return;
         }
 
@@ -213,8 +210,6 @@
         await tick();
         paypalButtonsContainer.style.display = "block";
         paypalButtonsShown = true;
-
-        console.log("renderPaypalButtons")
     }
 
     async function captureOrder(orderID) {
@@ -310,6 +305,10 @@
     }
 
     const justCreateOrder = async () => {
+        if (selectedServices.size === 0) {
+            return;
+        }
+
         if (validateForm()) {
             try {
                 await createDbOrder();
@@ -493,7 +492,7 @@
             Order now, pay later
         </button>
         <div id="paypal-button-container"></div>
-        {#if !paypalButtonsShown}
+        {#if !paypalButtonsShown && selectedServices.size > 0}
             <button class="px-4 w-full bg-black text-secondary py-4 font-bold text-lg rounded-xl flex flex-row items-center justify-between"
                     on:click={showPaypalButtons}>
                 {#if totalPriceDiscounted.toFixed(2) > 0}
