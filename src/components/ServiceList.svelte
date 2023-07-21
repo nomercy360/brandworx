@@ -1,8 +1,39 @@
 <script>
-    import {createEventDispatcher, onMount, tick} from 'svelte';
+    import {createEventDispatcher, onMount} from 'svelte';
     import ServiceItem from './ServiceItem.svelte';
     import FormFields from "./FormFields.svelte";
     import CheckoutFields from "./CheckoutFields.svelte";
+
+    onMount(async () => {
+        try {
+            await loadPayPalScript();
+            if (window.innerWidth < 1280) {
+                renderPaypalButtons(true);
+            } else {
+                renderPaypalButtons(false);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    });
+
+
+    async function loadPayPalScript() {
+        return new Promise((resolve, reject) => {
+            const id = 'paypal-js';
+            if (!document.getElementById(id)) {
+                let js = document.createElement('script');
+                js.id = id;
+                js.src = 'https://www.paypal.com/sdk/js?client-id=AdC_eHF5CM8Rf2JzMJjLE2zwNrbk1Kin-zBJVfoCHOwZ2elXIz4oYbBTkg0EJ6raVpd_Nxoc65--WaTX&currency=USD';
+                js.onload = resolve;
+                js.onerror = reject;
+                document.body.appendChild(js);
+            } else {
+                resolve();
+            }
+        });
+    }
+
 
     const services = [
         {
@@ -192,6 +223,7 @@
 
     async function showPaypalButtons() {
         if (!validateForm()) {
+            console.log("Form is not valid");
             return;
         }
 
@@ -207,9 +239,8 @@
         }
 
         // on next screen
-        await tick();
-        paypalButtonsContainer.style.display = "block";
         paypalButtonsShown = true;
+        paypalButtonsContainer.style.display = "block";
     }
 
     async function captureOrder(orderID) {
@@ -318,16 +349,6 @@
             }
         }
     }
-
-    onMount(() => {
-        if (window.innerWidth < 1280) {
-            renderPaypalButtons(true);
-        } else {
-            renderPaypalButtons(false);
-        }
-    });
-
-
 </script>
 
 <div class="mobile mx-auto">
