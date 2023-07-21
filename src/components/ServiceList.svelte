@@ -1,5 +1,5 @@
 <script>
-    import {createEventDispatcher, onMount} from 'svelte';
+    import {createEventDispatcher, onMount, tick} from 'svelte';
     import ServiceItem from './ServiceItem.svelte';
     import FormFields from "./FormFields.svelte";
     import CheckoutFields from "./CheckoutFields.svelte";
@@ -190,13 +190,15 @@
         }).render(`#paypal-button-container${mobile ? "-mobile" : ""}`);
     }
 
-    function showPaypalButtons() {
+    async function showPaypalButtons() {
         console.log("showPaypalButtons")
         if (!validateForm()) {
+            console.log("validateForm failed")
             return;
         }
 
         if (paypalButtonsShown) {
+            console.log("paypalButtonsShown")
             return;
         }
 
@@ -207,8 +209,12 @@
             paypalButtonsContainer = document.querySelector("#paypal-button-container");
         }
 
+        // on next screen
+        await tick();
         paypalButtonsContainer.style.display = "block";
         paypalButtonsShown = true;
+
+        console.log("renderPaypalButtons")
     }
 
     async function captureOrder(orderID) {
