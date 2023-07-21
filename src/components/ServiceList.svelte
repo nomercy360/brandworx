@@ -191,6 +191,7 @@
     }
 
     function showPaypalButtons() {
+        console.log("showPaypalButtons")
         if (!validateForm()) {
             return;
         }
