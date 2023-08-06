@@ -1,11 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import LeftSparks from "../components/icons/leftSparks.astro";
-import RightSparks from "../components/icons/rightSparks.astro";
-import ContentCard from "../components/ContentCard.astro";
-import Globe from "../components/icons/globe.astro";
-import Quote from "../components/icons/quote.astro";
-import Navbar from "../components/Navbar.astro";
+import Layout from '../../layouts/Layout.astro';
+import LeftSparks from "../../components/icons/leftSparks.astro";
+import RightSparks from "../../components/icons/rightSparks.astro";
+import ContentCard from "../../components/ContentCard.astro";
+import Globe from "../../components/icons/globe.astro";
+import Quote from "../../components/icons/quote.astro";
+import Navbar from "../../components/Navbar.astro";
 
 const title = "DisruptDesign - Expert Logo, Visual Identity, and Web Development Services";
 const description = "DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed.";
@@ -19,7 +19,7 @@ const keywords = "logo design, visual identity, ad creatives, promotion, website
     <div class="absolute right-0 top-14 -z-10 pointer-events-none">
         <RightSparks/>
     </div>
-    <Navbar/>
+    <Navbar activeTab="advertising"/>
     <section class="animate-in flex flex-col items-center gap-20 opacity-0 w-full">
         <div class="flex flex-col items-center justify-center space-y-1 px-5 w-full">
             <h1 class="mt-14 text-center md:text-[60px] md:leading-[64px] text-[40px] leading-[48px] max-w-xl md:px-0 px-2 md:tracking-[-4px] tracking-[-2px] mb-16">
@@ -27,7 +27,7 @@ const keywords = "logo design, visual identity, ad creatives, promotion, website
             </h1>
             <ContentCard headerText="Catchy" titleText="Brand identity" href="/branding"
                          descriptionText="We develop recognisable brands and logotypes, that people understands, love, and share. It helps our clients to gain trust of their customers."/>
-            <ContentCard headerText="Effective" titleText="Advertising" href="/advertising"
+            <ContentCard headerText="Effective" titleText="Advertising" href="/advertisign"
                          descriptionText="We are increasing engagement and conversion of ads, conducting researches and experiments, and developing effective value propositions and visuals."/>
             <ContentCard headerText="Interesting" titleText="Content & SMM" href="/content"
                          descriptionText="We are increasing engagement of social networks and blogs by conducting researches, and developing content strategies, and writing perfect posts."/>
