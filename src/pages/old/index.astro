@@ -1,0 +1,252 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import QuizButton from '../../components/QuizButton.svelte';
+import ServiceCard from '../../components/ServiceCard.astro';
+import HeaderText from '../../components/HeaderText.astro';
+import Footer from '../../components/FooterBlock.astro';
+import TextCard from "../../components/TextCard.astro";
+import TextCardBox from "../../components/TextCardBox.astro";
+import GetStartedButtons from "../../components/GetStartedButtons.astro";
+
+const quizButtons = [
+    {
+        title: 'Design affects sales and revenue',
+        description: 'Design is often viewed as only impacting the appearance of a product. In reality, it has a significant impact on final revenue. For example, if your ad creatives have a 2x boost in click-through rate (CTR), you will achieve 2x more sales using the same budget.If your website is both interesting and easy to understand, it will increase its conversion rate. Additionally, if your product looks, feels, and communicates in the same language as your customers, you will attract more of them.',
+    },
+    {
+        title: 'It is possible to measure an effect.',
+        description: 'For web projects, we can measure the effects using A/B testing. On average, our ads achieve 4x more engagement and 2x higher CTR. Our websites also achieve higher engagement, depth of scroll, and conversion rates because we make them interesting to explore.',
+    },
+    {
+        title: 'We are conducting research for each project.',
+        description: 'It is essential for us to understand who your customers are. If you want a logo or naming, we will ask you to fill out a brief and tell us about your product. Then, we will conduct market and competitor research. If you want a pitch-deck presentation or website, we will conduct much more in-depth research. For a website, we will use the value proposition canvas, customer development, and deeper market research.',
+    },
+    {
+        title: 'Although we work quickly, it still takes time.',
+        description: 'The time required for a task depends on what we are doing. We may be able to develop a logo, name, and advertising in a few days. However, creating websites, pitch-decks, and brands requires more time, but we still work efficiently.',
+    },
+    {
+        title: 'Money-back guarantee.',
+        description: 'We always do our best, but we cannot guarantee results. However, we offer money-back guarantee if you are not satisfied with the aesthetics or metrics of the results. ',
+    }
+]
+---
+<script>
+    import {Rive, Layout, Fit} from "@rive-app/canvas";
+
+    function loadRiveLoader(canvasId, src) {
+        document.querySelector('body').style.overflow = 'hidden';
+        const layout = new Layout({fit: Fit.Cover});
+        const canvas = document.getElementById(canvasId);
+
+        const r = new Rive({
+            src: src,
+            canvas: canvas,
+            layout: layout,
+            autoplay: true, // Set autoplay to true so that the loader starts immediately
+            onLoad: () => {
+                r.resizeDrawingSurfaceToCanvas();
+            }
+        });
+    }
+
+    function loadRiveAnimation(canvasId, src) {
+        loadRiveLoader("loader-canvas", "https://public.rive.app/hosted/185110/67279/Jtn1FdqAb0ijb-bXOIOaeA.riv")
+        return new Promise((resolve, reject) => {
+            const layout = new Layout({fit: Fit.Cover});
+            const canvas = document.getElementById(canvasId);
+
+            const r = new Rive({
+                // Hosted .riv asset, or a local one.
+                src: src,
+                canvas: canvas,
+                layout: layout,
+                stateMachines: "State Machine 1",
+                // Set it to false so the state machine doesn't play automatically when its ready
+                autoplay: false,
+                onLoad: () => {
+                    r.resizeDrawingSurfaceToCanvas();
+
+                    const observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                r.play("State Machine 1");
+                            } else {
+                                r.pause("State Machine 1");
+                            }
+                        });
+                    });
+
+                    observer.observe(canvas);
+
+                    // Resolve the promise when the Rive animation has loaded
+                    resolve();
+                }
+            });
+        });
+    }
+
+    async function loadAnimations() {
+        try {
+            await Promise.all([
+                loadRiveAnimation("canvas1", "https://public.rive.app/hosted/185110/65338/AxmeachkakmVG9wZy4u9QQ.riv"),
+                loadRiveAnimation("canvas2", "https://public.rive.app/hosted/185110/66048/bwzxJDlCq0GNw_enT0LYNw.riv"),
+                loadRiveAnimation("canvas3", "https://public.rive.app/hosted/185110/66090/jw6XRQVVy06sUvcRnVUDMw.riv")
+            ]);
+
+            // Hide the loading indicator
+            document.getElementById('loader-overlay').style.display = 'none';
+            document.querySelector('body').style.overflow = 'auto';
+        } catch (error) {
+            console.error("Failed to load Rive animation:", error);
+        }
+    }
+
+    loadAnimations();
+</script>
+
+<Layout
+        title="DisruptDesign - Expert Logo, Visual Identity, and Web Development Services"
+        description="DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed."
+        keywords="logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design"
+>
+    <div id="loader-overlay"
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; align-items: center; justify-content: center; z-index: 999;">
+        <canvas id="loader-canvas" class="bg-transparent w-60 h-60"></canvas>
+    </div>
+    <main class="bg-primary">
+        <div class="p-5 md:p-10">
+            <HeaderText/>
+            <div class="flex flex-row items-start justify-start gap-5 md:mt-10 mt-8">
+                <GetStartedButtons/>
+            </div>
+        </div>
+        <a href="/get-started" class="get-started-link">
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
+                <ServiceCard
+                        title="Boost your brand's awareness and credibility."
+                        description="We develop catchy and recognizable brands and logos that people understand, love, and share. This helps our clients gain the trust of their customers."
+                        price="200"
+                        buttonText="Get Started"
+                        imageLeft="a-letter.svg"
+                        imageRight="eye.svg"
+                />
+                <canvas id="canvas1" data-src="https://public.rive.app/hosted/185110/65338/AxmeachkakmVG9wZy4u9QQ.riv"
+                        class="bg-transparent md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl"/>
+            </div>
+        </a>
+        <a href="/get-started" class="get-started-link">
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
+                <ServiceCard
+                        title="Boost your ads and social media"
+                        description="We increase social media engagement and ad conversion by conducting research and experiments, and developing effective value propositions and visuals."
+                        price="200"
+                        buttonText="Get Started"
+                        imageLeft="instagram.png"
+                        imageRight="ladder.svg"
+                />
+                <canvas id="canvas2" data-src="https://public.rive.app/hosted/185110/66048/bwzxJDlCq0GNw_enT0LYNw.riv"
+                        class="bg-transparent md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl"/>
+            </div>
+        </a>
+        <a href="/get-started" class="get-started-link">
+            <div class="flex md:flex-row flex-col gap-1 mt-1 get-started px-2.5">
+                <ServiceCard
+                        title="Get pitch deck and website that sells"
+                        description="We aid businesses in effectively communicating their product value, simplifying complexities, resolving issues, and building trust with their customers."
+                        bgColor="bg-blue"
+                        price="200"
+                        buttonText="Get Started"
+                        borderColor="border-blue"
+                        imageLeft="stack.svg"
+                        imageRight="click.svg"
+                />
+                <canvas id="canvas3" data-src="https://public.rive.app/hosted/185110/66090/jw6XRQVVy06sUvcRnVUDMw.riv"
+                        class="bg-transparent md:w-2/3 h-[300px] md:h-[640px] md:order-last order-first rounded-3xl"/>
+            </div>
+        </a>
+        <div class="flex md:flex-row items-start justify-center flex-col md:mt-0 mt-12 p-5 md:p-10 text-center w-full md:gap-12 md:pt-28">
+            <div class="flex flex-col md:items-start items-center justify-start md:text-start text-center">
+                <h1 class="md:text-title text-title-mobile text-white md:mt-0 mt-4 title-font md:leading-title leading-title-mobile">
+                    We are here for growth</h1>
+                <p class="text-secondary opacity-40 md:text-l text-m w-full mt-4 font-medium">
+                    If you're launching or growing a product and are ready for experimentation and innovation, we're a
+                    perfect match.
+                </p>
+                <div class="flex flex-row gap-4 md:mb-24 mb-12 md:order-last md:justify-start justify-center">
+                    <GetStartedButtons/>
+                </div>
+            </div>
+            <div class="flex flex-col md:gap-10 gap-12 mb-28">
+                <TextCard
+                        title="Save time and money when launching projects"
+                        description="If you are planing to launch a new product, we’ll help you to conduct a researches and develop adjustable brand and communication that will allow you to test hypothesis quickly. save time and money."
+                />
+                <TextCard
+                        title="Improve the existing product and communication"
+                        description="We can help you achieve better advertising and communication results by providing advice and guidance on your current products, while staying true to your guidelines and vision."
+                />
+                <TextCard
+                        title="Do the best while pivoting your product"
+                        description="Taking the next step is difficult, especially when it comes to making the right decision. Our goal is to assist brands and companies in gaining valuable insights from their experiences, and making informed decisions."
+                />
+            </div>
+            <div class="flex md:flex-col gap-4 mt-0 md:mb-28 order-first md:order-none md:ml-20 ml-0">
+                <TextCardBox
+                        title="10X"
+                        rotate="rotate-[8.3deg]"
+                        rotateMobile="rotate-[-6.28deg]"
+                        description="Average annual growth rate of companies we are working with"
+                        bgColor="#FBA271"
+                />
+                <TextCardBox
+                        title="2X"
+                        description="Minimal conversion growth-rate after our improvements"
+                        bgColor="#EAFC82"
+                />
+                <TextCardBox
+                        title="50+"
+                        rotate="rotate-[-9.24deg]"
+                        rotateMobile="rotate-[11.51deg]"
+                        description="Client projects in portfolio"
+                        bgColor="#A9ADFB"
+                />
+            </div>
+        </div>
+        <div class="flex md:flex-row flex-col md:gap-20 p-5 md:p-10 bg-opacity-10 bg-secondary">
+            <div class="md:w-1/3 flex flex-col md:items-start items-center md:text-start text-center">
+                <p class="text-secondary md:text-title text-title-mobile md:mt-10 mt-6 title-font md:leading-title leading-title-mobile">
+                    Here is what you need to know</p>
+                <p class="text-secondary md:text-l text-m font-medium md:mt-5 mt-4 opacity-40 md:leading-l leading-m">
+                    Over the past 12 years, we have completed more than 100 projects. Here are the most important things
+                    you should know about working with us:
+                </p>
+                <div class="flex flex-row gap-4 md:justify-start justify-center">
+                    <GetStartedButtons quizVisibility="hidden"/>
+                </div>
+            </div>
+            <div class="flex flex-col gap-5 md:w-2/3 md:mt-10 mt-10">
+                {quizButtons.map((data) =>
+                        <QuizButton title={data.title} description={data.description} client:visible/>
+                )}
+            </div>
+        </div>
+        <Footer/>
+    </main>
+</Layout>
+
+<style>
+    .hidden-custom {
+        display: none;
+    }
+
+    @media (min-width: 768px) {
+        .hidden-custom {
+            display: block;
+        }
+    }
+
+    body {
+        @apply bg-primary;
+    }
+</style>

@@ -1,0 +1,69 @@
+---
+import DisraptIcon from "./icons/disraptIcon.astro";
+import Close from "./icons/close.astro";
+---
+
+<script>
+    document.getElementById('mobile-menu-button').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('mobile-menu-close-button').addEventListener('click', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
+    });
+</script>
+<nav class="md:px-10 md:py-8 px-4 py-6 flex flex-row justify-between items-center">
+    <div class="flex flex-row items-center gap-4">
+        <a href="/" class="text-[20px] font-black leading-[28px] flex flex-row gap-1 items-center">
+            <DisraptIcon/>
+            Disrapt
+        </a>
+        <a href="/old" class="text-[20px] font-black leading-[28px] link opacity-60">Old UI</a>
+    </div>
+    <div class="hidden md:flex flex-row gap-5 items-center">
+        <a href="/branding" class="text-[20px] font-black leading-[28px] link">Branding</a>
+        <a href="/advertisign" class="text-[20px] font-black leading-[28px] link">Advertising</a>
+        <a href="/content" class="text-[20px] font-black leading-[28px] link">Content</a>
+        <a href="/pitch-decks" class="text-[20px] font-black leading-[28px] link">Pitch-Decks</a>
+        <a href="/websites" class="text-[20px] font-black leading-[28px] link">Websites</a>
+        <a href="/contact-us" class="text-[20px] font-black leading-[28px] link">Contact Us</a>
+    </div>
+    <button id="mobile-menu-button" class="md:hidden flex flex-col items-center justify-between gap-1 w-5">
+        <span class="w-full h-1 bg-white"></span>
+        <span class="w-full h-1 bg-white"></span>
+    </button>
+    <div id="mobile-menu"
+         class="flex flex-col gap-5 items-center bg-black text-white fixed top-0 left-0 w-full h-full z-50">
+        <div class="px-4 py-6 flex flex-row justify-between items-center w-full">
+            <a href="/" class="text-[20px] font-black leading-[28px] flex flex-row gap-1 items-center">
+                <DisraptIcon/>
+                Disrapt
+            </a>
+            <button class="" id="mobile-menu-close-button">
+                <Close/>
+            </button>
+        </div>
+        <div class="animate-in flex flex-col gap-5 items-center my-auto">
+            <a href="/branding" class="text-[20px] font-black leading-[28px]">Branding</a>
+            <a href="/advertisign" class="text-[20px] font-black leading-[28px]">Advertising</a>
+            <a href="/content" class="text-[20px] font-black leading-[28px]">Content</a>
+            <a href="/pitch-decks" class="text-[20px] font-black leading-[28px]">Pitch-Decks</a>
+            <a href="/websites" class="text-[20px] font-black leading-[28px]">Websites</a>
+            <a href="/contact-us" class="text-[20px] font-black leading-[28px]">Contact Us</a>
+        </div>
+    </div>
+</nav>
+
+<style>
+    #mobile-menu {
+        display: none;
+    }
+
+    #mobile-menu.open {
+        display: flex;
+    }
+</style>

@@ -8,6 +8,9 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
     site: 'https://disrapt.co',
+    experimental: {
+        viewTransitions: true
+    },
     integrations: [tailwind(), svelte(), robotsTxt(), sitemap({
         filter: (page) => page !== 'https://disrapt.co/admin/',
     })],
