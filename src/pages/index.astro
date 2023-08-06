@@ -6,10 +6,13 @@ import ContentCard from "../components/ContentCard.astro";
 import Globe from "../components/icons/globe.astro";
 import Quote from "../components/icons/quote.astro";
 import Navbar from "../components/Navbar.astro";
+
+const title = "DisruptDesign - Expert Logo, Visual Identity, and Web Development Services";
+const description = "DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed.";
+const keywords = "logo design, visual identity, ad creatives, promotion, website development, graphic design, branding, design services, web design";
 ---
 
-
-<Layout>
+<Layout title={title} description={description} keywords={keywords}>
     <div class="absolute left-0 top-14 -z-10 pointer-events-none">
         <LeftSparks/>
     </div>
