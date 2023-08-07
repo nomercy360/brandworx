@@ -5,6 +5,7 @@ export interface Props {
     keywords: string;
 }
 
+import {ViewTransitions} from 'astro:transitions';
 const {title, description, keywords} = Astro.props;
 ---
 
@@ -32,6 +33,7 @@ const {title, description, keywords} = Astro.props;
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
         f.parentNode.insertBefore(j, f);
     })(window, document, 'script', 'dataLayer', 'GTM-TJCMS4X3');</script>
+    <ViewTransitions/>
     <!-- End Google Tag Manager -->
 </head>
 <body>
@@ -96,6 +98,25 @@ const {title, description, keywords} = Astro.props;
         -webkit-background-clip: text;
         color: transparent;
         scale: 1.03;
+    }
+
+    h1 {
+        font-family: 'LastikRegular', sans-serif;
+    }
+
+    @font-face {
+        font-family: 'FuzzyBubbles';
+        src: url('/fonts/FuzzyBubbles-Bold.woff2') format('woff2'),
+        url('/fonts/FuzzyBubbles-Bold.woff') format('woff'),
+        url('/fonts/FuzzyBubbles-Bold.ttf') format('truetype'),
+        url('/fonts/FuzzyBubbles-Bold.otf') format('opentype'),
+        url('/fonts/FuzzyBubbles-Bold.eot') format('embedded-opentype');
+        font-style: normal;
+        font-display: swap;
+    }
+
+    .card-title {
+        font-family: 'FuzzyBubbles', roboto, sans-serif;
     }
 
 </style>

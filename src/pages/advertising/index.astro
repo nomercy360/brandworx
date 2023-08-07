@@ -6,6 +6,7 @@ import ContentCard from "../../components/ContentCard.astro";
 import Globe from "../../components/icons/globe.astro";
 import Quote from "../../components/icons/quote.astro";
 import Navbar from "../../components/Navbar.astro";
+import Sync from "../../components/icons/sync.astro";
 
 const title = "DisruptDesign - Expert Logo, Visual Identity, and Web Development Services";
 const description = "DisruptDesign offers professional design and development services, including logo design, visual identity creation, ad creatives, promotion, and website development, with unlimited revisions and satisfaction guaranteed.";
@@ -13,97 +14,76 @@ const keywords = "logo design, visual identity, ad creatives, promotion, website
 ---
 
 <Layout title={title} description={description} keywords={keywords}>
-    <div class="absolute left-0 top-14 -z-10 pointer-events-none">
-        <LeftSparks/>
-    </div>
-    <div class="absolute right-0 top-14 -z-10 pointer-events-none">
-        <RightSparks/>
-    </div>
     <Navbar activeTab="advertising"/>
-    <section class="animate-in flex flex-col items-center gap-20 opacity-0 w-full">
-        <div class="flex flex-col items-center justify-center space-y-1 px-5 w-full">
-            <h1 class="mt-14 text-center md:text-[60px] md:leading-[64px] text-[40px] leading-[48px] max-w-xl md:px-0 px-2 md:tracking-[-4px] tracking-[-2px] mb-16">
-                All design and marketing services to boost sales are under one roof.
-            </h1>
-            <ContentCard headerText="Catchy" titleText="Brand identity" href="/branding"
-                         descriptionText="We develop recognisable brands and logotypes, that people understands, love, and share. It helps our clients to gain trust of their customers."/>
-            <ContentCard headerText="Effective" titleText="Advertising" href="/advertisign"
-                         descriptionText="We are increasing engagement and conversion of ads, conducting researches and experiments, and developing effective value propositions and visuals."/>
-            <ContentCard headerText="Interesting" titleText="Content & SMM" href="/content"
-                         descriptionText="We are increasing engagement of social networks and blogs by conducting researches, and developing content strategies, and writing perfect posts."/>
-            <ContentCard headerText="Clear" titleText="Websites" href="/websites"
-                         descriptionText="We help companies and brands to present and communicate in the customer’s world: to talk about difficult things simply, work with concerns, and inspire trust."/>
-            <ContentCard headerText="Inspirational" titleText="Pitch-decks" href="/pitch-decks"
-                         descriptionText="We help founders to talk about difficult things simply, work with concerns, and inspire trust of their future investors."/>
-        </div>
-        <div class="relative md:px-0 px-8 w-full flex items-center justify-center">
-            <div class="hidden md:block absolute left-0 top-0 -z-10 pointer-events-none text-[#444] text-[32px] leading-[40px] uppercase font-bold">
-                <span class="block rotate-[-17.452deg]">crypto</span>
-                <span class="block mt-6 ml-[130px] rotate-[2.493deg]">fashion</span>
-                <span class="block mt-8 ml-[180px] rotate-[-6.408deg]">fin-tech</span>
-                <span class="block mt-10 rotate-[12.407deg]">architecture</span>
-            </div>
-            <div class="hidden md:block absolute right-0 top-0 -z-10 pointer-events-none text-[#444] text-[32px] leading-[40px] text-end uppercase font-bold">
-                <span class="block -ml-2 rotate-[-6.408deg]">saas</span>
-                <span class="block mt-6 mr-[80px] rotate-[8.759deg]">e-commerce</span>
-                <span class="block mt-6 mr-[200px] rotate-[19.752deg]">baas</span>
-                <span class="block mt-8 -ml-2 rotate-[-6.408deg]">climate-tech</span>
-            </div>
-            <div class="flex flex-col items-center justify-start text-center max-w-2xl">
-                <h2 class="md:text-[60px] md:leading-[68px] text-[40px] leading-[48px] md:tracking-[-4px] tracking-[-2px]">
-                    Over 50 great projects for clients allover the world
-                </h2>
-                <div class="mt-10 flex flex-row">
-                    <Quote className="inline-block"/>
-                    <p class="md:text-[20px] md:leading-[32px] text-[16px] leading-[24px] font-semibold inline-block">
-                        We develop catchy and recognisable brands and
-                        logotypes, that people
-                        understands, love, and share. It helps our clients to gain trust of their customers.
-                        <Quote className="inline-block rotate-[230deg]"/>
-
-                    </p>
+    <section class="flex flex-col items-center gap-20 w-full">
+        <div class="flex-col text-center items-center justify-center px-5 w-full relative">
+            <div class="hidden lg:flex flex-row flex-wrap absolute top-0 left-0 max-w-sm">
+                <div class="relative ml-4">
+                    <img src="/story-left-1.png" alt="story-left-1" class="w-[135px] h-[170px]" />
+                    <div class="absolute top-0 -left-6 rounded-[54px] flex items-center justify-center bg-light-yellow text-black px-4 h-[32px] text-[12px] font-bold leading-[20px] rotate-[-12.156deg]">
+                        3.4% CTR
+                    </div>
                 </div>
-                <p class="md:text-[16px] text-[12px] leading-[24px] font-semibold opacity-60 mt-4">
-                    Sergey Fedorov, Founder of make.solar
+                <div class="relative ml-4">
+                    <img src="/story-left-2.png" alt="story-left-2" class="w-[160px] h-[240px]"/>
+                    <div class="absolute top-0 right-0 rounded-[54px] flex items-center justify-center bg-light-pink text-black px-4 h-[32px] text-[12px] font-bold leading-[20px] rotate-[11.92deg]">
+                        3.4% CTR
+                    </div>
+                </div>
+                <div class="relative -mt-8">
+                    <img src="/story-left-3.png" alt="story-left-3" class="w-[160px] h-[240px]"/>
+                    <div class="absolute top-0 -right-7 rounded-[54px] flex items-center justify-center bg-light-green text-black px-4 h-[32px] text-[12px] font-bold leading-[20px] rotate-[15deg]">
+                        3.4% CTR
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col items-center space-y-3 justify-center md:px-0 px-2">
+                <h1 class="mt-14 md:text-[60px] md:leading-[64px] text-[40px] leading-[48px] md:tracking-[-4px] tracking-[-2px] max-w-xl">
+                    Advertising creatives that works
+                </h1>
+                <p class="text-[20px] leading-[32px] font-medium opacity-30 max-w-xl">
+                    Making ads profitable is always tricky. But what if we
+                    have the right recipe and are willing to share it?
                 </p>
-                <div class="flex flex-row gap-2 items-center mt-6">
-                    <div class="h-2 w-2 bg-white rounded-full"></div>
-                    <div class="h-2 w-2 bg-white opacity-10 rounded-full"></div>
-                    <div class="h-2 w-2 bg-white opacity-10 rounded-full"></div>
-                </div>
             </div>
-        </div>
-        <div class="flex flex-col items-center md:px-0 px-8">
-            <h2 class="text-center md:text-[60px] md:leading-[68px] text-[40px] leading-[48px] md:tracking-[-4px] tracking-[-1px] max-w-2xl">
-                For founders and teams that are willing to grow
-            </h2>
-            <div class="md:grid grid-cols-3 flex flex-col gap-4 md:items-start items-center mt-14">
-                <div class="md:text-start text-center flex flex-col md:gap-3 gap-2 md:max-w-sm">
-                    <p class="md:text-[24px] md:leading-[32px] text-[20px] leading-[28px] font-bold">
-                        Save money and time while launching things
-                    </p>
-                    <p class="md:text-[20px] md:leading-[32px] text-[16px] leading-[24px] font-medium opacity-40">
-                        If you are planing to launch a new product, we’ll help you to conduct a researches and develop
-                        adjustable brand and communication that will allow you to test hypothesis quickly. save time and
-                        money.
-                    </p>
-                </div>
-                <div class="md:text-start text-center flex flex-col md:gap-3 gap-2 md:max-w-sm">
-                    <p class="md:text-[24px] md:leading-[32px] text-[20px] leading-[28px] font-bold">
-                        Improve existing product and communication
-                    </p>
-                    <p class="md:text-[20px] md:leading-[32px] text-[16px] leading-[24px] font-medium opacity-40">
-                        Unlimited revisions, expertly handcrafted logos, satisfaction guarantee without the hassle of
-                        the process for a flat fee in only two days.
+            <div class="flex flex-row gap-3 items-center mt-7 justify-center">
+                <button class="bg-light-pink h-[52px] w-[52px] rounded-full flex items-center justify-center">
+                    <Sync/>
+                </button>
+                <button class="rounded-[62px] bg-light-pink text-black px-4 h-[52px] text-[16px] font-bold leading-[20px]">
+                    Calculate the cost
+                </button>
+            </div>
+            <div class="grid md:grid-cols-4 grid-cols-2 gap-10 mt-20 w-fit mx-auto">
+                <div class="flex flex-col items-start justify-start text-start gap-1 md:w-[220px]">
+                    <p class="text-[22px] leading-[20px] font-bold text-[#EAFC82] card-title">Firstly, make</p>
+                    <p class="text-[20px] leading-[28px] font-bold">Firstly, make</p>
+                    <p class="md:text-[16px] text-[13px] md:leading-[24px] leading-[18px] font-medium opacity-60">
+                        We’ll help you to identify your value and describe it to users in the most clear way.
                     </p>
                 </div>
-                <div class="md:text-start text-center flex flex-col md:gap-3 gap-2 md:max-w-sm">
-                    <p class="md:text-[24px] md:leading-[32px] text-[20px] leading-[28px] font-bold">
-                        Do the best while pivoting your product
+                <div class="flex flex-col items-start justify-start text-start gap-1 md:w-[220px]">
+                    <p class="text-[22px] leading-[20px] font-bold text-[#EAFC82] card-title">Mix it with</p>
+                    <p class="text-[20px] leading-[28px] font-bold">Trustworthy design</p>
+                    <p class="md:text-[16px] text-[13px] md:leading-[24px] leading-[18px] font-medium opacity-60">
+                        We develop catchy and recognizable ads that will help you gain the trust of customers, and
+                        increase your engagement.
                     </p>
-                    <p class="md:text-[20px] md:leading-[32px] text-[16px] leading-[24px] font-medium opacity-40">
-                        Making the next step is hard. Especially it’s hard to make it right. We are helping brands abd
-                        companies get the best insights from their experience, and make the right decisions.
+                </div>
+                <div class="flex flex-col items-start justify-start text-start gap-1 md:w-[220px]">
+                    <p class="text-[22px] leading-[20px] font-bold text-[#EAFC82] card-title">Serve with</p>
+                    <p class="text-[20px] leading-[28px] font-bold">The right settings</p>
+                    <p class="md:text-[16px] text-[13px] md:leading-[24px] leading-[18px] font-medium opacity-60">
+                        We can help ensure that your pixel and Conversion API work together seamlessly with your ads
+                        settings.
+                    </p>
+                </div>
+                <div class="flex flex-col items-start justify-start text-start gap-1 md:w-[220px]">
+                    <p class="text-[22px] leading-[20px] font-bold text-[#EAFC82] card-title">Add a pinch of</p>
+                    <p class="text-[20px] leading-[28px] font-bold">Experiments</p>
+                    <p class="md:text-[16px] text-[13px] md:leading-[24px] leading-[18px] font-medium opacity-60">
+                        To find the best audience and message match for your product, we will conduct several
+                        experiments to achieve this goal.
                     </p>
                 </div>
             </div>

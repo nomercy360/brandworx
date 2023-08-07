@@ -11,7 +11,7 @@ const {headerText, titleText, descriptionText, href} = Astro.props;
 <a class="flex md:flex-row flex-col gap-1 items-center justify-center w-full" href={href}>
     <div class="px-6 py-8 rounded-[32px] bg-white flex flex-col items-start justify-between md:h-[460px] h-[280px] md:w-[530px] w-full">
         <div>
-            <p class="text-[#FCC6FA] font-bold md:text-[22px] md:leading-[20px] text-[16px] leading-[20px]">
+            <p class="text-[#FCC6FA] font-bold md:text-[22px] md:leading-[20px] text-[16px] leading-[20px] card-title">
                 {headerText}
             </p>
             <p class="text-black opacity-60 font-bold md:text-[32px] md:leading-[36px] text-[16px] leading-[20px]">
@@ -21,7 +21,7 @@ const {headerText, titleText, descriptionText, href} = Astro.props;
                 {descriptionText}
             </p>
         </div>
-        <button class="rounded-[62px] bg-[#FCC6FA] text-black px-4 h-[52px] text-[16px] font-bold leading-[20px]">
+        <button class="rounded-[62px] bg-light-pink text-black px-4 h-[52px] text-[16px] font-bold leading-[20px]">
             Learn more
         </button>
     </div>
